@@ -1,19 +1,29 @@
+-- Helper functions 
+local nnoremap = function (lhs, rhs) vim.api.nvim_set_keymap('n', lhs, rhs, { noremap = true, silent = true }) end
+local inoremap = function (lhs, rhs) vim.api.nvim_set_keymap('i', lhs, rhs, { noremap = true, silent = true }) end
+local xnoremap = function (lhs, rhs) vim.api.nvim_set_keymap('x', lhs, rhs, { noremap = true, silent = true }) end
+
+
 -- <Space> as Leader Key
-vim.api.nvim_set_keymap('n', '<Space>', '<NOP>', { noremap = true, silent = true })
+nnoremap('<Space>', '<NOP>')
 vim.g.mapleader = ' '
 
 -- J.K.
-vim.api.nvim_set_keymap('i', 'kj', '<Esc>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('i', 'jk', '<Esc>', { noremap = true, silent = true })
+inoremap('kj', '<Esc>')
+inoremap('jk', '<Esc>')
 
-vim.api.nvim_set_keymap('n', 'kj', ':w<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', 'jk', ':w<CR>', { noremap = true, silent = true })
+nnoremap('kj', ':w<CR>')
+nnoremap('jk', ':w<CR>')
 
 -- Clear Highlights
-vim.api.nvim_set_keymap('n', '<Esc><Esc>', ':noh<CR>', { noremap = true, silent = true })
+nnoremap('<Esc><Esc>', ':noh<CR>')
 
 -- Buffers
-vim.api.nvim_set_keymap('n', '<Leader>b', ':buffers', { noremap = true, silent = true })
+nnoremap('<Leader>b', ':buffers<CR>')
 
 -- Go to last file
-vim.api.nvim_set_keymap('n', 'gl', '<C-^>', { noremap = true, silent = true })
+nnoremap('gl', '<C-^>')
+
+-- Move
+xnoremap('K', ':move \'<-2<CR>gv-gv')
+xnoremap('J', ':move \'>+1<CR>gv-gv')
