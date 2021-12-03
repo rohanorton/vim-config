@@ -26,7 +26,7 @@ return require('packer').startup(function()
     use 'mhartington/formatter.nvim'
 
     use 'neovim/nvim-lspconfig'
-    use 'hrsh7th/nvim-compe'
+    use 'hrsh7th/nvim-cmp'
 
     use 'vimwiki/vimwiki'
 end)
