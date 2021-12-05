@@ -11,8 +11,6 @@ if fn.empty(fn.glob(install_path)) > 0 then
     execute 'packadd packer.nvim'
 end
 
--- Force use of astronauta first....
-vim.cmd('runtime plugin/astronauta.vim')
 
 return require('packer').startup(function()
     -- Packer can manage itself
@@ -22,7 +20,6 @@ return require('packer').startup(function()
         'nvim-telescope/telescope.nvim',
         requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}}
     }
-    use 'tjdevries/astronauta.nvim'
     use 'mhartington/formatter.nvim'
 
     use 'neovim/nvim-lspconfig'
