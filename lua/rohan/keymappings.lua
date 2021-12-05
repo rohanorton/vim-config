@@ -48,9 +48,6 @@ nnoremap('<Leader>h', '<Cmd>Telescope help_tags<CR>')
 nnoremap('<Leader><Tab>', ':bnext<CR>')
 nnoremap('<Leader><S-Tab>', ':bprevious<CR>')
 
--- Make Y consistent with D and C. Yank to end of line
-nnoremap('Y', 'y$')
-
 nnoremap('<Leader>q', ':q<CR>')
 
 -- Require Language Servers....
