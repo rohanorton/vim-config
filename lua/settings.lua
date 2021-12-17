@@ -1,7 +1,7 @@
 local cmd = vim.cmd -- to execute Vim commands e.g. cmd('pwd') .. or  cmd 'pwd'
 local fn = vim.fn -- to call Vim functions e.g. fn.bufnr()
 local g = vim.g -- a table to access global variables
-local opt = vim.o -- to set options 
+local opt = vim.o -- to set options
 
 opt.belloff = "all" -- * I cannot emphasise enough how little I want to hear the bell. *
 
@@ -62,6 +62,8 @@ opt.updatetime = 300
 
 opt.signcolumn = 'number'
 
-vim.g.python_host_skip_check = 1
-vim.g.python3_host_skip_check = 1
+g.python_host_skip_check = 1
+g.python3_host_skip_check = 1
 
+opt.foldmethod = 'expr'
+opt.foldexpr = 'nvim_treesitter#foldexpr()'

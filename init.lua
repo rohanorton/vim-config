@@ -1,4 +1,4 @@
-require('rohan/settings')
-require('rohan/plugins')
+require('settings')
+require('plugins')
+require('keymappings')
 
-require('rohan/keymappings')

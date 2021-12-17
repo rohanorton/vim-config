@@ -5,9 +5,11 @@ require('formatter').setup({
         elm = {
             -- elm-format
             function()
-                return {exe = "~/.asdf/shims/elm-format",
-                args= {'--stdin'},
-                stdin = true}
+                return {
+                    exe = "~/.asdf/shims/elm-format",
+                    args = {'--stdin'},
+                    stdin = true
+                }
             end
         },
         javascript = {
@@ -46,6 +48,6 @@ require('formatter').setup({
 vim.api.nvim_exec([[
 augroup FormatAutogroup
   autocmd!
-  autocmd BufWritePost * FormatWrite
+  autocmd BufWritePost *.js,*.rs,*.lua FormatWrite
 augroup END
 ]], true)
