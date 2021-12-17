@@ -24,4 +24,6 @@ return require('packer').startup(function()
 
     use 'neovim/nvim-lspconfig'
     use 'hrsh7th/nvim-cmp'
+
+    use 'tpope/vim-vinegar'
 end)
