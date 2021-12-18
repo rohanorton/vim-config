@@ -13,7 +13,7 @@ end
 -- returns the require for use in `config` parameter of packer's use
 -- expects the name of the config file
 local function get_config(name)
-    return string.format("require(\"rohan/%s\")", name)
+    return string.format("require(\"rohan/setup/%s\")", name)
 end
 
 return require('packer').startup(function()
