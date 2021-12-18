@@ -29,12 +29,9 @@ return require('packer').startup(function()
 
     use {'mhartington/formatter.nvim', config = get_config('formatter')}
 
-    use {
-        'williamboman/nvim-lsp-installer',
-        config = get_config('lsp-installer')
-    }
-
     use 'neovim/nvim-lspconfig'
+
+    use 'williamboman/nvim-lsp-installer'
 
     use {
         'hrsh7th/nvim-cmp',

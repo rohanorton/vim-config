@@ -30,14 +30,30 @@ cmp.setup.cmdline(':', {
 })
 
 -- Setup lspconfig.
-local lsp_config = require('lspconfig')
+require("nvim-lsp-installer").on_server_ready(function(server)
+    local capabilities = vim.lsp.protocol.make_client_capabilities()
+    local setup = require('cmp_nvim_lsp').update_capabilities(capabilities)
 
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
+    if server.name == "sumneko_lua" then
 
-print(lsp_config)
+        -- Custom completion settings for lua
+        setup.settings = {
+            Lua = {
+                diagnostics = {globals = {'vim', 'use'}},
+                workspace = {
+                    -- Make the server aware of Neovim runtime files
+                    library = {
+                        [vim.fn.expand('$VIMRUNTIME/lua')] = true,
+                        [vim.fn.expand('$VIMRUNTIME/lua/vim/lsp')] = true
+                    }
+                }
+            }
+        }
+    end
 
-local lsp_installer = require("nvim-lsp-installer")
-lsp_installer.on_server_ready(function(server)
-    lsp_config[server.name].setup {capabilities = capabilities}
+    -- For some reason the default command gets ignored, re-assigning it to
+    -- prevent failure.
+    setup.cmd = server._default_options.cmd
+
+    server:setup(setup)
 end)
