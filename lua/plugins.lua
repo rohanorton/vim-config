@@ -65,4 +65,14 @@ return require('packer').startup(function()
     }
 
     use 'google/vim-searchindex'
+
+    use 'AndrewRadev/splitjoin.vim'
+
+    use 'tpope/vim-repeat'
+
+    use 'tpope/vim-surround'
+
+    use 'tpope/vim-unimpaired'
+
+    use 'tpope/vim-abolish'
 end)
