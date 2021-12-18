@@ -72,4 +72,6 @@ return require('packer').startup(function()
     use 'tpope/vim-unimpaired'
 
     use 'tpope/vim-abolish'
+
+    use {'simrat39/rust-tools.nvim', config = get_config('rust-tools')}
 end)
