@@ -65,6 +65,8 @@ return require('packer').startup(function()
 
     use 'AndrewRadev/splitjoin.vim'
 
+    use 'tpope/vim-fugitive'
+
     use 'tpope/vim-repeat'
 
     use 'tpope/vim-surround'
@@ -74,4 +76,5 @@ return require('packer').startup(function()
     use 'tpope/vim-abolish'
 
     use {'simrat39/rust-tools.nvim', config = get_config('rust-tools')}
+
 end)
