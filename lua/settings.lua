@@ -64,6 +64,3 @@ opt.signcolumn = 'number'
 
 g.python_host_skip_check = 1
 g.python3_host_skip_check = 1
-
-opt.foldmethod = 'expr'
-opt.foldexpr = 'nvim_treesitter#foldexpr()'
