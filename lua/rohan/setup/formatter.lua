@@ -1,46 +1,44 @@
 -- https://github.com/mhartington/formatter.nvim
+local function elm_format()
+    return {exe = "~/.asdf/shims/elm-format", args = {'--stdin'}, stdin = true}
+end
+
+local function prettier()
+    local exe = vim.fn.filereadable("node_modules/.bin/prettier") == 1 and
+                    "node_modules/.bin/prettier" or "~/.asdf/shims/prettier"
+    return {
+        exe = exe,
+        args = {
+            "--stdin-filepath", vim.api.nvim_buf_get_name(0), '--single-quote'
+        },
+        stdin = true
+    }
+end
+
+local function lua_format()
+    return {exe = "~/.asdf/shims/lua-format", stdin = true}
+end
+
+local function black() return {exe = "~/.asdf/shims/black", stdin = false} end
+
+local function rustfmt() return {exe = "~/.asdf/shims/rustfmt", stdin = false} end
+
+--
 require('formatter').setup({
     logging = true,
     filetype = {
-        elm = {
-            -- elm-format
-            function()
-                return {
-                    exe = "~/.asdf/shims/elm-format",
-                    args = {'--stdin'},
-                    stdin = true
-                }
-            end
-        },
-        javascript = {
-            -- prettier
-            function()
-                return {
-                    -- Using local installation of prettier... Perhaps we could
-                    -- be smart about this and fallback to a global prettier??
-                    exe = "node_modules/.bin/prettier",
-                    args = {
-                        "--stdin-filepath", vim.api.nvim_buf_get_name(0),
-                        '--single-quote'
-                    },
-                    stdin = true
-                }
-            end
-        },
+        elm = {elm_format},
 
-        lua = {
-            -- lua-format
-            function()
-                return {exe = "~/.asdf/shims/lua-format", stdin = true}
-            end
-        },
+        javascript = {prettier},
+        typescript = {prettier},
+        json = {prettier},
+        html = {prettier},
 
-        python = {
-            -- black
-            function()
-                return {exe = "~/.asdf/shims/black", stdin = false}
-            end
-        }
+        lua = {lua_format},
+
+        -- python = {black},
+
+        rust = {rustfmt}
     }
 })
 
@@ -48,6 +46,6 @@ require('formatter').setup({
 vim.api.nvim_exec([[
 augroup FormatAutogroup
   autocmd!
-  autocmd BufWritePost *.js,*.rs,*.lua FormatWrite
+  autocmd BufWritePost *  undojoin | FormatWrite
 augroup END
 ]], true)

@@ -2,6 +2,12 @@
 local cmp = require 'cmp'
 
 cmp.setup({
+    snippet = {
+        expand = function(args)
+            -- This function is called on expand snippet
+            vim.fn["vsnip#anonymous"](args.body)
+        end
+    },
     mapping = {
         ['<C-b>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), {'i', 'c'}),
         ['<C-f>'] = cmp.mapping(cmp.mapping.scroll_docs(4), {'i', 'c'}),
@@ -16,8 +22,8 @@ cmp.setup({
         ['<CR>'] = cmp.mapping.confirm({select = true})
     },
     sources = cmp.config.sources({
-        {name = 'nvim_lsp'}, {name = 'nvim_lua'}, {name = 'calc'},
-        {name = 'buffer'}
+        {name = 'nvim_lsp'}, {name = 'nvim_lua'}, {name = 'vsnip'},
+        {name = 'calc'}, {name = 'buffer'}, {name = 'path'}
     })
 })
 
@@ -31,6 +37,8 @@ cmp.setup.cmdline(':', {
 
 -- Setup lspconfig.
 require("nvim-lsp-installer").on_server_ready(function(server)
+    -- if server.name == 'rust_analyzer' then return end
+
     local capabilities = vim.lsp.protocol.make_client_capabilities()
     local setup = require('cmp_nvim_lsp').update_capabilities(capabilities)
 

@@ -20,11 +20,22 @@ return require('packer').startup(function()
     -- Packer can manage itself
     use 'wbthomason/packer.nvim'
 
+    use 'tjdevries/astronauta.nvim'
+
     use {"npxbr/gruvbox.nvim", requires = {"rktjmp/lush.nvim"}}
 
     use {
         'nvim-telescope/telescope.nvim',
-        requires = {'nvim-lua/popup.nvim', 'nvim-lua/plenary.nvim'}
+        requires = {'nvim-lua/popup.nvim', 'nvim-lua/plenary.nvim'},
+        config = get_config('telescope')
+    }
+
+    use {'nvim-telescope/telescope-cheat.nvim', requires = {'tami5/sqlite.lua'}}
+
+    use {
+        "nvim-telescope/telescope-frecency.nvim",
+        requires = {"tami5/sqlite.lua"},
+        config = get_config('telescope-frecency')
     }
 
     use {'mhartington/formatter.nvim', config = get_config('formatter')}
@@ -33,11 +44,14 @@ return require('packer').startup(function()
 
     use 'williamboman/nvim-lsp-installer'
 
+    use {'hrsh7th/vim-vsnip', requires = {'rafamadriz/friendly-snippets'}}
+
     use {
         'hrsh7th/nvim-cmp',
         requires = {
             'hrsh7th/cmp-nvim-lsp', 'hrsh7th/cmp-buffer', 'hrsh7th/cmp-path',
-            'hrsh7th/cmp-cmdline', 'hrsh7th/cmp-calc', 'hrsh7th/cmp-nvim-lua'
+            'hrsh7th/cmp-cmdline', 'hrsh7th/cmp-calc', 'hrsh7th/cmp-nvim-lua',
+            'hrsh7th/cmp-vsnip'
         },
         config = get_config('cmp')
     }
@@ -63,7 +77,7 @@ return require('packer').startup(function()
 
     use 'google/vim-searchindex'
 
-    use 'AndrewRadev/splitjoin.vim'
+    use {"AndrewRadev/splitjoin.vim", keys = {"gJ", "gS"}}
 
     use 'tpope/vim-fugitive'
 
@@ -77,4 +91,19 @@ return require('packer').startup(function()
 
     use {'simrat39/rust-tools.nvim', config = get_config('rust-tools')}
 
+    use {"elzr/vim-json", ft = "json"}
+
+    use "justinmk/vim-syntax-extra"
+
+    use "lewis6991/gitsigns.nvim"
+
+  -- TODO: one of these plugins overrides <leader>a ... is it possible to prevent this?
+    -- use {
+    --     "rcarriga/vim-ultest",
+    --     config = get_config('ultest'),
+    --     requires = {"vim-test/vim-test"},
+    --     run = ":UpdateRemotePlugins"
+    -- }
+
+    use "ThePrimeagen/harpoon"
 end)

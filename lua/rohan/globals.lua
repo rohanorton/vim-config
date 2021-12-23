@@ -1,4 +1,13 @@
 P = function(v)
-  print(vim.inspect(v))
-  return v
+    print(vim.inspect(v))
+    return v
+end
+
+UUID = function()
+    math.randomseed(os.time())
+    local template = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'
+    return string.gsub(template, '[xy]', function(c)
+        local v = (c == 'x') and math.random(0, 0xf) or math.random(8, 0xb)
+        return string.format('%x', v)
+    end)
 end
