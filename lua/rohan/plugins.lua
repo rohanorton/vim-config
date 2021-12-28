@@ -104,4 +104,11 @@ return require('packer').startup(function()
     -- }
 
     use "ThePrimeagen/harpoon"
+
+    use {
+        "folke/trouble.nvim",
+        requires = "kyazdani42/nvim-web-devicons",
+        config = get_config('trouble')
+
+    }
 end)

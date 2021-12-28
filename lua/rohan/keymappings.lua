@@ -103,3 +103,12 @@ nmap {'<leader>T', ':TestFile<CR>'}
 nmap {'<leader>a', ':TestSuite<CR>'}
 nmap {'<leader>l', ':TestLast<CR>'}
 nmap {'<leader>g', ':TestVisit<CR>'}
+
+nnoremap {
+    ']c',
+    function() require("trouble").next({skip_groups = true, jump = true}) end
+};
+nnoremap {
+    '[c',
+    function() require("trouble").previous({skip_groups = true, jump = true}) end
+};
