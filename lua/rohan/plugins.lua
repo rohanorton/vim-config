@@ -38,8 +38,6 @@ return require('packer').startup(function()
         config = get_config('telescope-frecency')
     }
 
-    use {'mhartington/formatter.nvim', config = get_config('formatter')}
-
     use 'neovim/nvim-lspconfig'
 
     use 'williamboman/nvim-lsp-installer'

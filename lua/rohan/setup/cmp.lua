@@ -1,6 +1,14 @@
 -- Setup nvim-cmp.
 local cmp = require 'cmp'
 
+-- Auto-format all files prior to saving them
+vim.api.nvim_exec([[
+augroup FormatAutogroup
+  autocmd!
+  autocmd BufWritePre * lua vim.lsp.buf.formatting_sync(nil, 1000)
+augroup END
+]], true)
+
 cmp.setup({
     snippet = {
         expand = function(args)
