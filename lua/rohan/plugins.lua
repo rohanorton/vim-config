@@ -95,7 +95,7 @@ return require('packer').startup(function()
 
     use "lewis6991/gitsigns.nvim"
 
-  -- TODO: one of these plugins overrides <leader>a ... is it possible to prevent this?
+    -- TODO: one of these plugins overrides <leader>a ... is it possible to prevent this?
     -- use {
     --     "rcarriga/vim-ultest",
     --     config = get_config('ultest'),
