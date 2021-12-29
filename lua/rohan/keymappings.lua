@@ -98,17 +98,21 @@ xmap {'s', '<Plug>(vsnip-select-text)'}
 nmap {'s', '<Plug>(vsnip-cut-text)'}
 xmap {'s', '<Plug>(vsnip-cut-text)'}
 
-nmap {'<leader>t', ':TestNearest<CR>'}
-nmap {'<leader>T', ':TestFile<CR>'}
-nmap {'<leader>a', ':TestSuite<CR>'}
-nmap {'<leader>l', ':TestLast<CR>'}
-nmap {'<leader>g', ':TestVisit<CR>'}
+nnoremap {'<leader>t', ':TestNearest<CR>'}
+-- nnoremap {'<leader>t', ':Ultest<CR>'}
+nnoremap {'<leader>tf', ':TestFile<CR>'}
+nnoremap {'<leader>t', ':TestSuite<CR>'}
+nnoremap {'<leader>tl', ':TestLast<CR>'}
+nnoremap {'<leader>tg', ':TestVisit<CR>'}
 
-nnoremap {
-    ']c',
-    function() require("trouble").next({skip_groups = true, jump = true}) end
-};
-nnoremap {
-    '[c',
-    function() require("trouble").previous({skip_groups = true, jump = true}) end
-};
+-- nnoremap {']t', '<Plug>(ultest-next-fail)'}
+-- nnoremap {'[t', '<Plug>(ultest-prev-fail)'}
+
+-- nnoremap {
+--     ']c',
+--     function() require("trouble").next({skip_groups = true, jump = true}) end
+-- };
+-- nnoremap {
+--     '[c',
+--     function() require("trouble").previous({skip_groups = true, jump = true}) end
+-- };

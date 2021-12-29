@@ -95,7 +95,6 @@ return require('packer').startup(function()
 
     use "lewis6991/gitsigns.nvim"
 
-    -- TODO: one of these plugins overrides <leader>a ... is it possible to prevent this?
     -- use {
     --     "rcarriga/vim-ultest",
     --     config = get_config('ultest'),
@@ -110,5 +109,10 @@ return require('packer').startup(function()
         requires = "kyazdani42/nvim-web-devicons",
         config = get_config('trouble')
 
+    }
+
+    use {
+        'machakann/vim-highlightedyank',
+        config = get_config('highlightedyank')
     }
 end)

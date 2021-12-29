@@ -1,5 +1,4 @@
 local cmd = vim.cmd -- to execute Vim commands e.g. cmd('pwd') .. or  cmd 'pwd'
-local fn = vim.fn -- to call Vim functions e.g. fn.bufnr()
 local g = vim.g -- a table to access global variables
 local opt = vim.o -- to set options
 
@@ -64,3 +63,5 @@ opt.signcolumn = 'number'
 
 g.python_host_skip_check = 1
 g.python3_host_skip_check = 1
+g.python3_host_prog = '~/.asdf/shims/python3'
+g.python_host_prog = '~/.asdf/shims/python2'
