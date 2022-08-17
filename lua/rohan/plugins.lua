@@ -16,11 +16,10 @@ local function get_config(name)
     return string.format("require(\"rohan/setup/%s\")", name)
 end
 
-return require('packer').startup(function()
+return require('packer').startup(function(use)
+
     -- Packer can manage itself
     use 'wbthomason/packer.nvim'
-
-    use 'tjdevries/astronauta.nvim'
 
     use {"npxbr/gruvbox.nvim", requires = {"rktjmp/lush.nvim"}}
 
@@ -115,4 +114,6 @@ return require('packer').startup(function()
         'machakann/vim-highlightedyank',
         config = get_config('highlightedyank')
     }
+
+    use 'sheerun/vim-polyglot'
 end)

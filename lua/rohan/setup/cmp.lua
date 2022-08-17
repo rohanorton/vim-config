@@ -59,6 +59,17 @@ require("nvim-lsp-installer").on_server_ready(function(server)
         }
     end
 
+    if server.name == 'tsserver' then
+        local capabilitiesWithoutFomatting = vim.lsp.protocol
+                                                 .make_client_capabilities()
+        capabilitiesWithoutFomatting.textDocument.formatting = false
+        capabilitiesWithoutFomatting.textDocument.rangeFormatting = false
+        capabilitiesWithoutFomatting.textDocument.range_formatting = false
+
+        server.settings = {documentFormatting = false}
+        server.capabilities = capabilitiesWithoutFomatting
+    end
+
     -- For some reason the default command gets ignored, re-assigning it to
     -- prevent failure.
     setup.cmd = server._default_options.cmd
