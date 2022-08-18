@@ -1,30 +1,22 @@
 -- Helper functions
-local imap = function(lhs, rhs, opts)
-    vim.keymap.set('i', lhs, rhs, opts)
-end
-local smap = function(lhs, rhs, opts)
-    vim.keymap.set('s', lhs, rhs, opts)
-end
-local nmap = function(lhs, rhs, opts)
-    vim.keymap.set('n', lhs, rhs, opts)
-end
-local xmap = function(lhs, rhs, opts)
-    vim.keymap.set('x', lhs, rhs, opts)
-end
+local imap = function(lhs, rhs, opts) vim.keymap.set('i', lhs, rhs, opts) end
+local smap = function(lhs, rhs, opts) vim.keymap.set('s', lhs, rhs, opts) end
+local nmap = function(lhs, rhs, opts) vim.keymap.set('n', lhs, rhs, opts) end
+local xmap = function(lhs, rhs, opts) vim.keymap.set('x', lhs, rhs, opts) end
 local nnoremap = function(lhs, rhs, opts)
     if opts == nil then opts = {} end
     opts.noremap = true
-    vim.keymap.set('n', lhs, rhs, opts)
+    nmap(lhs, rhs, opts)
 end
 local inoremap = function(lhs, rhs, opts)
     if opts == nil then opts = {} end
     opts.noremap = true
-    vim.keymap.set('i', lhs, rhs, opts)
+    imap(lhs, rhs, opts)
 end
 local xnoremap = function(lhs, rhs, opts)
     if opts == nil then opts = {} end
     opts.noremap = true
-    vim.keymap.set('x', lhs, rhs, opts)
+    xmap(lhs, rhs, opts)
 end
 --
 
@@ -108,7 +100,7 @@ local vsnip_bindings = {
 for _, x in pairs(vsnip_bindings) do
     -- e.g. "vsnip#available(1) ? '<Plug>(vsnip-expand-or-jump)': '<C-l>'"
     local rhs = x.condition .. " ? '" .. x.command .. "' : '" .. x.key .. "'"
-    opts = { expr = true }
+    local opts = { expr = true }
     imap(x.key, rhs, opts)
     smap(x.key, rhs, opts)
 end
