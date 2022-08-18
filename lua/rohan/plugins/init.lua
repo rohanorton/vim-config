@@ -13,7 +13,7 @@ end
 -- returns the require for use in `config` parameter of packer's use
 -- expects the name of the config file
 local function get_config(name)
-    return string.format("require(\"rohan/setup/%s\")", name)
+    return string.format("require(\"rohan/plugins/%s\")", name)
 end
 
 return require('packer').startup(function(use)
@@ -21,19 +21,19 @@ return require('packer').startup(function(use)
     -- Packer can manage itself
     use 'wbthomason/packer.nvim'
 
-    use {"npxbr/gruvbox.nvim", requires = {"rktjmp/lush.nvim"}}
+    use { "npxbr/gruvbox.nvim", requires = { "rktjmp/lush.nvim" } }
 
     use {
         'nvim-telescope/telescope.nvim',
-        requires = {'nvim-lua/popup.nvim', 'nvim-lua/plenary.nvim'},
+        requires = { 'nvim-lua/popup.nvim', 'nvim-lua/plenary.nvim' },
         config = get_config('telescope')
     }
 
-    use {'nvim-telescope/telescope-cheat.nvim', requires = {'tami5/sqlite.lua'}}
+    use { 'nvim-telescope/telescope-cheat.nvim', requires = { 'tami5/sqlite.lua' } }
 
     use {
         "nvim-telescope/telescope-frecency.nvim",
-        requires = {"tami5/sqlite.lua"},
+        requires = { "tami5/sqlite.lua" },
         config = get_config('telescope-frecency')
     }
 
@@ -41,7 +41,7 @@ return require('packer').startup(function(use)
 
     use 'williamboman/nvim-lsp-installer'
 
-    use {'hrsh7th/vim-vsnip', requires = {'rafamadriz/friendly-snippets'}}
+    use { 'hrsh7th/vim-vsnip', requires = { 'rafamadriz/friendly-snippets' } }
 
     use {
         'hrsh7th/nvim-cmp',
@@ -57,24 +57,24 @@ return require('packer').startup(function(use)
 
     use {
         'goolord/alpha-nvim',
-        requires = {'kyazdani42/nvim-web-devicons'},
+        requires = { 'kyazdani42/nvim-web-devicons' },
         config = get_config('alpha')
     }
 
     use {
         'nvim-treesitter/nvim-treesitter',
-        requires = {"nvim-treesitter/playground"},
+        requires = { "nvim-treesitter/playground" },
         config = get_config('treesitter')
     }
 
     use {
         'tpope/vim-commentary',
-        requires = {'JoosepAlviste/nvim-ts-context-commentstring'}
+        requires = { 'JoosepAlviste/nvim-ts-context-commentstring' }
     }
 
     use 'google/vim-searchindex'
 
-    use {"AndrewRadev/splitjoin.vim", keys = {"gJ", "gS"}}
+    use { "AndrewRadev/splitjoin.vim", keys = { "gJ", "gS" } }
 
     use 'tpope/vim-fugitive'
 
@@ -86,9 +86,9 @@ return require('packer').startup(function(use)
 
     use 'tpope/vim-abolish'
 
-    use {'simrat39/rust-tools.nvim', config = get_config('rust-tools')}
+    -- use { 'simrat39/rust-tools.nvim', config = get_config('rust-tools') }
 
-    use {"elzr/vim-json", ft = "json"}
+    use { "elzr/vim-json", ft = "json" }
 
     use "justinmk/vim-syntax-extra"
 
@@ -116,4 +116,10 @@ return require('packer').startup(function(use)
     }
 
     use 'sheerun/vim-polyglot'
+
+    use {
+        'jose-elias-alvarez/null-ls.nvim',
+        config = get_config('null-ls')
+
+    }
 end)
