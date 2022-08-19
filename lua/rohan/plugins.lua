@@ -44,6 +44,22 @@ return packer.startup(function(use)
 		"jose-elias-alvarez/null-ls.nvim", -- Make vim a language server
 	})
 
+	-- Snippets
+	use({
+		"L3MON4D3/LuaSnip",
+		"rafamadriz/friendly-snippets",
+	})
+
+	-- Cmp
+	use({
+		"hrsh7th/nvim-cmp",
+		"hrsh7th/cmp-buffer",
+		"hrsh7th/cmp-path",
+		"hrsh7th/cmp-nvim-lsp",
+		"hrsh7th/cmp-nvim-lua",
+		"saadparwaiz1/cmp_luasnip",
+	})
+
 	-- Editable Directory Buffer
 	-- (vim-vinegar replacement)
 	use("elihunter173/dirbuf.nvim")
