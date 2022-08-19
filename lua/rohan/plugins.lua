@@ -44,6 +44,10 @@ return packer.startup(function(use)
 		"jose-elias-alvarez/null-ls.nvim", -- Make vim a language server
 	})
 
+	-- Editable Directory Buffer
+	-- (vim-vinegar replacement)
+	use("elihunter173/dirbuf.nvim")
+
 	-- Automatically set up your configuration after cloning packer.nvim
 	if PACKER_BOOTSTRAP then
 		require("packer").sync()
