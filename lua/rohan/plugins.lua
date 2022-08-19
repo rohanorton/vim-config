@@ -40,6 +40,7 @@ return packer.startup(function(use)
 		"neovim/nvim-lspconfig",
 		"williamboman/mason.nvim", -- Installer
 		"williamboman/mason-lspconfig.nvim",
+		"WhoIsSethDaniel/mason-tool-installer.nvim",
 		"jose-elias-alvarez/null-ls.nvim", -- Make vim a language server
 	})
 
