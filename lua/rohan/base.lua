@@ -1,4 +1,3 @@
-local cmd = vim.cmd -- to execute Vim commands e.g. cmd('pwd') .. or  cmd 'pwd'
 local g = vim.g -- a table to access global variables
 local opt = vim.o -- to set options
 
@@ -9,7 +8,7 @@ opt.wildoptions = "pum"
 opt.wildmenu = true
 opt.ruler = true
 
-opt.background = 'dark' -- Dark background colorscheme
+opt.background = "dark" -- Dark background colorscheme
 opt.termguicolors = true -- True color support
 
 opt.number = true -- Line numbers
@@ -46,7 +45,7 @@ opt.wrap = false -- Disable line wrap
 opt.swapfile = false -- This rarely has been anything other than annoying!
 opt.backup = false -- Don't save backup files
 
-opt.iskeyword = opt.iskeyword .. ',-' -- Treat dash separated words as word text object
+opt.iskeyword = opt.iskeyword .. ",-" -- Treat dash separated words as word text object
 
 opt.mouse = "a" -- Sometimes I like to use the mouse, ok!
 
@@ -55,9 +54,9 @@ opt.timeoutlen = 200
 opt.ttimeoutlen = 0
 opt.updatetime = 300
 
-opt.signcolumn = 'number'
+opt.signcolumn = "number"
 
 g.python_host_skip_check = 1
 g.python3_host_skip_check = 1
-g.python3_host_prog = '~/.asdf/shims/python3'
-g.python_host_prog = '~/.asdf/shims/python2'
+g.python3_host_prog = "~/.asdf/shims/python3"
+g.python_host_prog = "~/.asdf/shims/python2"

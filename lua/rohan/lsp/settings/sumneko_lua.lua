@@ -10,5 +10,6 @@ return {
 			library = vim.api.nvim_get_runtime_file("", true),
 		},
 		telemetry = { enable = false },
+		format = { enable = false }, -- Only use stylua for formatting.
 	},
 }
