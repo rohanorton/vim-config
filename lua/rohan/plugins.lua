@@ -29,6 +29,9 @@ return packer.startup(function(use)
 	-- Colorschemes
 	use("ellisonleao/gruvbox.nvim")
 
+	-- Kind Symbols
+	use("onsails/lspkind.nvim")
+
 	-- Telescope
 	use({
 		"nvim-telescope/telescope.nvim",
