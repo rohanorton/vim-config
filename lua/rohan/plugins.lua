@@ -101,6 +101,7 @@ return packer.startup(function(use)
 		"tpope/vim-unimpaired",
 		"tpope/vim-abolish",
 		"tpope/vim-endwise", -- Like autopairs but for ruby/lua blocks with "end"
+		"tpope/vim-fugitive",
 	})
 
 	-- Comments
