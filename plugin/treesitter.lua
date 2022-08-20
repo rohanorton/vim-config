@@ -12,7 +12,20 @@ configs.setup({
 		enable = true, -- false will disable the whole extension
 		disable = { "" }, -- list of language that will be disabled
 	},
-	autopairs = {
-		enable = true,
+	autopairs = { enable = true },
+	textobjects = {
+		select = {
+			enable = true,
+			-- Automatically jump forward to textobj, similar to targets.vim
+			lookahead = true,
+			keymaps = {
+				["af"] = "@function.outer",
+				["if"] = "@function.inner",
+				["ac"] = "@class.outer",
+				["ic"] = "@class.inner",
+				["al"] = "@loop.outer",
+				["il"] = "@loop.inner",
+			},
+		},
 	},
 })
