@@ -4,7 +4,7 @@ return {
 			version = "LuaJIT",
 		},
 		diagnostics = {
-			globals = { "vim", "use", "P" },
+			globals = { "vim", "use", "require", "P" },
 		},
 		workspace = {
 			library = vim.api.nvim_get_runtime_file("", true),
