@@ -31,6 +31,7 @@ cmp.setup({
 		{ name = "buffer" },
 		{ name = "path" },
 		{ name = "calc" },
+		{ name = "crates" },
 	},
 	formatting = {
 		fields = { "kind", "abbr", "menu" },

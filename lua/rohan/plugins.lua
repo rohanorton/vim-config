@@ -66,6 +66,11 @@ return packer.startup(function(use)
 		"rafamadriz/friendly-snippets",
 	})
 
+	use({
+		"saecki/crates.nvim",
+		requires = { "nvim-lua/plenary.nvim" },
+	})
+
 	-- Cmp
 	use({
 		"hrsh7th/nvim-cmp",
