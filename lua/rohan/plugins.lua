@@ -62,16 +62,21 @@ return packer.startup(function(use)
 
 	-- Treesitter
 	use({
-		{ "nvim-treesitter/nvim-treesitter", { run = ":TSUpdate" } },
+		"nvim-treesitter/nvim-treesitter",
 		"nvim-treesitter/playground",
 		"nvim-treesitter/nvim-treesitter-textobjects",
 	})
+
+	-- Git
+	use({ "lewis6991/gitsigns.nvim" })
 
 	-- Editable Directory Buffer
 	-- (vim-vinegar replacement)
 	use("elihunter173/dirbuf.nvim")
 
+	-- Autopairs
 	use("windwp/nvim-autopairs")
+
 	-- Automatically set up your configuration after cloning packer.nvim
 	if PACKER_BOOTSTRAP then
 		require("packer").sync()
