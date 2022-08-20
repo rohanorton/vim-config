@@ -1,5 +1,5 @@
 local ok, cmp = pcall(require, "cmp")
-if not ok then
+if not ok or cmp == nil then
 	return
 end
 
