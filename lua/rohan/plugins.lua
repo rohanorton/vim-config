@@ -97,6 +97,12 @@ return packer.startup(function(use)
 		"tpope/vim-endwise", -- Like autopairs but for ruby/lua blocks with "end"
 	})
 
+	-- Todo Comment Highlighting
+	use({
+		"folke/todo-comments.nvim",
+		requires = "nvim-lua/plenary.nvim",
+	})
+
 	-- Start Screen
 	use({
 		"goolord/alpha-nvim",
