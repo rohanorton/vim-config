@@ -97,6 +97,9 @@ return packer.startup(function(use)
 		"tpope/vim-endwise", -- Like autopairs but for ruby/lua blocks with "end"
 	})
 
+	-- Comments
+	use("numToStr/Comment.nvim")
+
 	-- Todo Comment Highlighting
 	use({
 		"folke/todo-comments.nvim",
