@@ -60,6 +60,9 @@ return packer.startup(function(use)
 		"saadparwaiz1/cmp_luasnip",
 	})
 
+	-- Treesitter
+	use("nvim-treesitter/nvim-treesitter")
+
 	-- Editable Directory Buffer
 	-- (vim-vinegar replacement)
 	use("elihunter173/dirbuf.nvim")
