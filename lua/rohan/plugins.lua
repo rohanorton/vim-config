@@ -29,6 +29,12 @@ return packer.startup(function(use)
 	-- Colorschemes
 	use("ellisonleao/gruvbox.nvim")
 
+	-- Statusline
+	use({
+		"nvim-lualine/lualine.nvim",
+		requires = { "kyazdani42/nvim-web-devicons", opt = true },
+	})
+
 	-- Kind Symbols
 	use("onsails/lspkind.nvim")
 
