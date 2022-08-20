@@ -57,6 +57,7 @@ return packer.startup(function(use)
 		"williamboman/mason-lspconfig.nvim",
 		"WhoIsSethDaniel/mason-tool-installer.nvim",
 		"jose-elias-alvarez/null-ls.nvim", -- Make vim a language server
+		"simrat39/rust-tools.nvim",
 	})
 
 	-- Snippets

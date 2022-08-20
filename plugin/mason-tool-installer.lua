@@ -14,6 +14,9 @@ installer.setup({
 		"lua-language-server", -- a.k.a. sumneko
 		"stylua",
 		"luacheck",
+		-- Rust
+		"rust-analyzer",
+		"taplo",
 	},
 
 	-- if set to true this will check each tool for updates. If updates

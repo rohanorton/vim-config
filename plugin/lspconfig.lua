@@ -8,14 +8,16 @@ local lsp_flags = {
 	debounce_text_changes = 150,
 }
 
+local on_attach = require("rohan.lsp.on-attach")()
+local on_attach_without_document_formatting = require("rohan.lsp.on-attach")({ document_formatting = false })
+
 lspconfig["sumneko_lua"].setup({
-	on_attach = function(client, bufnr)
-		-- HACK: Turn off sumneko document formatting
-		if client.name == "sumneko_lua" then
-			client.resolved_capabilities.document_formatting = false
-		end
-		require("rohan.lsp.on-attach")(client, bufnr)
-	end,
+	on_attach = on_attach_without_document_formatting,
 	flags = lsp_flags,
 	settings = require("rohan.lsp.settings.sumneko_lua"),
+})
+
+lspconfig["taplo"].setup({
+	on_attach = on_attach,
+	flags = lsp_flags,
 })

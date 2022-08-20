@@ -9,7 +9,8 @@ local code_actions = null_ls.builtins.code_actions
 null_ls.setup({
 	sources = {
 		formatting.stylua,
+		formatting.rustfmt,
 		code_actions.gitsigns,
 	},
-	on_attach = require("rohan.lsp.on-attach"),
+	on_attach = require("rohan.lsp.on-attach")(),
 })
