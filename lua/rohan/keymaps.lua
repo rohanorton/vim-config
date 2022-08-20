@@ -39,6 +39,13 @@ map("v", "J", ":move '>+1<CR>gv-gv", noremap)
 
 -- Telescope
 map("", "<C-p>", "<Cmd>Telescope find_files<CR>")
+map(
+	"n",
+	"<leader><leader>",
+	"<Cmd>lua require('telescope').extensions.frecency.frecency({ workspace = 'CWD' })<CR>",
+	{ noremap = true, silent = true }
+)
+
 map("n", "<Leader>p", "<Cmd>Telescope find_files<CR>")
 
 map("n", "<Leader>a", "<Cmd>Telescope live_grep<CR>")
