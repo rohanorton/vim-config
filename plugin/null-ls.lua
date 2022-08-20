@@ -4,10 +4,12 @@ if not ok then
 end
 
 local formatting = null_ls.builtins.formatting
+local code_actions = null_ls.builtins.code_actions
 
 null_ls.setup({
 	sources = {
 		formatting.stylua,
+		code_actions.gitsigns,
 	},
 	on_attach = require("rohan.lsp.on-attach"),
 })
