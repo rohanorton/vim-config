@@ -54,8 +54,6 @@ opt.timeoutlen = 200
 opt.ttimeoutlen = 0
 opt.updatetime = 300
 
-opt.signcolumn = "number"
-
 g.python_host_skip_check = 1
 g.python3_host_skip_check = 1
 g.python3_host_prog = "~/.asdf/shims/python3"
