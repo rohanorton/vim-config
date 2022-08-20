@@ -88,6 +88,15 @@ return packer.startup(function(use)
 	-- Autopairs
 	use("windwp/nvim-autopairs")
 
+	-- TPope plugins
+	use({
+		"tpope/vim-surround",
+		"tpope/vim-repeat",
+		"tpope/vim-unimpaired",
+		"tpope/vim-abolish",
+		"tpope/vim-endwise", -- Like autopairs but for ruby/lua blocks with "end"
+	})
+
 	-- Start Screen
 	use({
 		"goolord/alpha-nvim",
