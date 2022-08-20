@@ -88,6 +88,12 @@ return packer.startup(function(use)
 	-- Autopairs
 	use("windwp/nvim-autopairs")
 
+	-- Start Screen
+	use({
+		"goolord/alpha-nvim",
+		requires = { "kyazdani42/nvim-web-devicons" },
+	})
+
 	-- Automatically set up your configuration after cloning packer.nvim
 	if PACKER_BOOTSTRAP then
 		require("packer").sync()
