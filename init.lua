@@ -6,7 +6,7 @@ end
 require("rohan.global")
 require("rohan.base")
 require("rohan.keymaps")
-require("rohan.plugins")
+require("rohan.packer")
 require("rohan.lsp")
 require("rohan.colorscheme")
 require("rohan.autocmds")
