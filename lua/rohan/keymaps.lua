@@ -18,6 +18,9 @@ local noremap = { noremap = true }
 map("", "<Space>", "<NOP>")
 vim.g.mapleader = " "
 
+-- Source file
+map("", "<leader>ww", "<Cmd>:source %<CR>", silent)
+
 -- J.K. for Esc/Save
 for _, keystrokes in pairs({ "jk", "kj" }) do
 	map({ "!", "v", "o", "t" }, keystrokes, "<Esc>", noremap)
