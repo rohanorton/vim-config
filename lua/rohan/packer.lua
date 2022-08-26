@@ -133,6 +133,9 @@ return packer.startup({
 		-- Highlight instances of word under cursor
 		use("RRethy/vim-illuminate")
 
+		-- Zoom split windows
+		use("troydm/zoomwintab.vim")
+
 		-- Automatically set up your configuration after cloning packer.nvim
 		if PACKER_BOOTSTRAP then
 			require("packer").sync()
