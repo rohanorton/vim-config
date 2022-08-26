@@ -19,117 +19,127 @@ if not status_ok then
 end
 
 -- Install your plugins here
-return packer.startup(function(use)
-	-- Packer can manage itself
-	use("wbthomason/packer.nvim")
+return packer.startup({
+	function(use)
+		-- Packer can manage itself
+		use("wbthomason/packer.nvim")
 
-	-- Speed up loading Lua modules in Neovim to improve startup time.
-	use("lewis6991/impatient.nvim")
+		-- Speed up loading Lua modules in Neovim to improve startup time.
+		use("lewis6991/impatient.nvim")
 
-	-- Colorschemes
-	use("ellisonleao/gruvbox.nvim")
+		-- Colorschemes
+		use("ellisonleao/gruvbox.nvim")
 
-	-- Statusline
-	use({
-		"nvim-lualine/lualine.nvim",
-		requires = { "kyazdani42/nvim-web-devicons", opt = true },
-	})
+		-- Statusline
+		use({
+			"nvim-lualine/lualine.nvim",
+			requires = { "kyazdani42/nvim-web-devicons", opt = true },
+		})
 
-	-- Kind Symbols
-	use("onsails/lspkind.nvim")
+		-- Kind Symbols
+		use("onsails/lspkind.nvim")
 
-	-- Telescope
-	use({
-		{
-			"nvim-telescope/telescope.nvim",
-			requires = { "nvim-lua/popup.nvim", "nvim-lua/plenary.nvim" },
-		},
-		{
-			"nvim-telescope/telescope-frecency.nvim",
-			requires = { "tami5/sqlite.lua" },
-		},
-	})
+		-- Telescope
+		use({
+			{
+				"nvim-telescope/telescope.nvim",
+				requires = { "nvim-lua/popup.nvim", "nvim-lua/plenary.nvim" },
+			},
+			{
+				"nvim-telescope/telescope-frecency.nvim",
+				requires = { "tami5/sqlite.lua" },
+			},
+		})
 
-	-- LSP
-	use({
-		"neovim/nvim-lspconfig",
-		"williamboman/mason.nvim", -- Installer
-		"williamboman/mason-lspconfig.nvim",
-		"WhoIsSethDaniel/mason-tool-installer.nvim",
-		"jose-elias-alvarez/null-ls.nvim", -- Make vim a language server
-		"simrat39/rust-tools.nvim",
-	})
+		-- LSP
+		use({
+			"neovim/nvim-lspconfig",
+			"williamboman/mason.nvim", -- Installer
+			"williamboman/mason-lspconfig.nvim",
+			"WhoIsSethDaniel/mason-tool-installer.nvim",
+			"jose-elias-alvarez/null-ls.nvim", -- Make vim a language server
+			"simrat39/rust-tools.nvim",
+		})
 
-	-- Snippets
-	use({
-		"L3MON4D3/LuaSnip",
-		"rafamadriz/friendly-snippets",
-	})
+		-- Snippets
+		use({
+			"L3MON4D3/LuaSnip",
+			"rafamadriz/friendly-snippets",
+		})
 
-	use({
-		"saecki/crates.nvim",
-		requires = { "nvim-lua/plenary.nvim" },
-	})
+		use({
+			"saecki/crates.nvim",
+			requires = { "nvim-lua/plenary.nvim" },
+		})
 
-	-- Cmp
-	use({
-		"hrsh7th/nvim-cmp",
-		"hrsh7th/cmp-buffer",
-		"hrsh7th/cmp-path",
-		"hrsh7th/cmp-nvim-lsp",
-		"hrsh7th/cmp-nvim-lsp-signature-help",
-		"hrsh7th/cmp-nvim-lua",
-		"hrsh7th/cmp-calc",
-		"saadparwaiz1/cmp_luasnip",
-	})
+		-- Cmp
+		use({
+			"hrsh7th/nvim-cmp",
+			"hrsh7th/cmp-buffer",
+			"hrsh7th/cmp-path",
+			"hrsh7th/cmp-nvim-lsp",
+			"hrsh7th/cmp-nvim-lsp-signature-help",
+			"hrsh7th/cmp-nvim-lua",
+			"hrsh7th/cmp-calc",
+			"saadparwaiz1/cmp_luasnip",
+		})
 
-	-- Treesitter
-	use({
-		"nvim-treesitter/nvim-treesitter",
-		"nvim-treesitter/playground",
-		"nvim-treesitter/nvim-treesitter-textobjects",
-	})
+		-- Treesitter
+		use({
+			"nvim-treesitter/nvim-treesitter",
+			"nvim-treesitter/playground",
+			"nvim-treesitter/nvim-treesitter-textobjects",
+		})
 
-	-- Git
-	use({ "lewis6991/gitsigns.nvim" })
+		-- Git
+		use({ "lewis6991/gitsigns.nvim" })
 
-	-- Editable Directory Buffer
-	-- (vim-vinegar replacement)
-	use("elihunter173/dirbuf.nvim")
+		-- Editable Directory Buffer
+		-- (vim-vinegar replacement)
+		use("elihunter173/dirbuf.nvim")
 
-	-- Autopairs
-	use("windwp/nvim-autopairs")
+		-- Autopairs
+		use("windwp/nvim-autopairs")
 
-	-- TPope plugins
-	use({
-		"tpope/vim-surround",
-		"tpope/vim-repeat",
-		"tpope/vim-unimpaired",
-		"tpope/vim-abolish",
-		"tpope/vim-endwise", -- Like autopairs but for ruby/lua blocks with "end"
-		"tpope/vim-fugitive",
-	})
+		-- TPope plugins
+		use({
+			"tpope/vim-surround",
+			"tpope/vim-repeat",
+			"tpope/vim-unimpaired",
+			"tpope/vim-abolish",
+			"tpope/vim-endwise", -- Like autopairs but for ruby/lua blocks with "end"
+			"tpope/vim-fugitive",
+		})
 
-	-- Comments
-	use("numToStr/Comment.nvim")
+		-- Comments
+		use("numToStr/Comment.nvim")
 
-	-- Todo Comment Highlighting
-	use({
-		"folke/todo-comments.nvim",
-		requires = "nvim-lua/plenary.nvim",
-	})
+		-- Todo Comment Highlighting
+		use({
+			"folke/todo-comments.nvim",
+			requires = "nvim-lua/plenary.nvim",
+		})
 
-	-- Start Screen
-	use({
-		"goolord/alpha-nvim",
-		requires = { "kyazdani42/nvim-web-devicons" },
-	})
+		-- Start Screen
+		use({
+			"goolord/alpha-nvim",
+			requires = { "kyazdani42/nvim-web-devicons" },
+		})
 
-	-- Highlight instances of word under cursor
-	use("RRethy/vim-illuminate")
+		-- Buffers
+		use({ "akinsho/bufferline.nvim", tag = "v2.*", requires = "kyazdani42/nvim-web-devicons" })
+		use({ "numtostr/BufOnly.nvim" })
 
-	-- Automatically set up your configuration after cloning packer.nvim
-	if PACKER_BOOTSTRAP then
-		require("packer").sync()
-	end
-end)
+		-- Highlight instances of word under cursor
+		use("RRethy/vim-illuminate")
+
+		-- Automatically set up your configuration after cloning packer.nvim
+		if PACKER_BOOTSTRAP then
+			require("packer").sync()
+		end
+	end,
+	config = {
+		-- Prevent sloooow packer window
+		max_jobs = 5,
+	},
+})
