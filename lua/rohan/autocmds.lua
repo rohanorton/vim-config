@@ -12,7 +12,7 @@ autocmd("BufWritePre", {
 -- Autocommand that reloads neovim whenever you save the plugins.lua file
 local plugin_config_changed_group = augroup("PluginConfigChanged", { clear = true })
 autocmd("BufWritePost", {
-	pattern = "plugins.lua",
+	pattern = "packer.lua",
 	command = "source <afile> | PackerSync",
 	group = plugin_config_changed_group,
 })
