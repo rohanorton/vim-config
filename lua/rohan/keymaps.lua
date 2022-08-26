@@ -11,6 +11,7 @@
 -- 'v' = visual + block
 
 local map = vim.keymap.set
+local unmap = vim.keymap.del
 local silent = { silent = true }
 local noremap = { noremap = true }
 
@@ -90,3 +91,6 @@ map("n", "<leader>9", "<Cmd>BufferLineGoToBuffer 9<CR>", silent)
 -- Close buffers
 map("n", "<leader>x", "<Cmd>BufOnly<CR>", silent)
 map("n", "<leader>q", "<Cmd>bdelete<CR>", silent)
+
+-- Zoom Windows
+map("", "<leader>z", "<Cmd>ZoomWinTabToggle<CR>", noremap)

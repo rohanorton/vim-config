@@ -58,3 +58,6 @@ g.python_host_skip_check = 1
 g.python3_host_skip_check = 1
 g.python3_host_prog = "~/.asdf/shims/python3"
 g.python_host_prog = "~/.asdf/shims/python2"
+
+g.zoomwintab_remap = 0
+g.zoomwintab_hidetabbar = 0
