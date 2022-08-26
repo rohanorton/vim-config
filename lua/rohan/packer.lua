@@ -136,6 +136,9 @@ return packer.startup({
 		-- Zoom split windows
 		use("troydm/zoomwintab.vim")
 
+		-- Scratchpad for Lua
+		use({ "rafcamlet/nvim-luapad", requires = "antoinemadec/FixCursorHold.nvim" })
+
 		-- Automatically set up your configuration after cloning packer.nvim
 		if PACKER_BOOTSTRAP then
 			require("packer").sync()
