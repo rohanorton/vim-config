@@ -21,3 +21,8 @@ lspconfig["taplo"].setup({
 	on_attach = on_attach,
 	flags = lsp_flags,
 })
+
+lspconfig["tsserver"].setup({
+	on_attach = on_attach_without_document_formatting,
+	flags = lsp_flags,
+})

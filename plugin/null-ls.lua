@@ -10,6 +10,7 @@ null_ls.setup({
 	sources = {
 		formatting.stylua,
 		formatting.rustfmt,
+		formatting.prettierd,
 		code_actions.gitsigns,
 	},
 	on_attach = require("rohan.lsp.on-attach")(),

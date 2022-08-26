@@ -139,6 +139,19 @@ return packer.startup({
 		-- Scratchpad for Lua
 		use({ "rafcamlet/nvim-luapad", requires = "antoinemadec/FixCursorHold.nvim" })
 
+		-- Testing
+		use({
+			"nvim-neotest/neotest",
+			requires = {
+				"nvim-lua/plenary.nvim",
+				"nvim-treesitter/nvim-treesitter",
+				"antoinemadec/FixCursorHold.nvim",
+
+				-- Test Adapters
+				"haydenmeade/neotest-jest",
+			},
+		})
+
 		-- Automatically set up your configuration after cloning packer.nvim
 		if PACKER_BOOTSTRAP then
 			require("packer").sync()

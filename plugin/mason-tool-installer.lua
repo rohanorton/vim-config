@@ -17,6 +17,9 @@ installer.setup({
 		-- Rust
 		"rust-analyzer",
 		"taplo",
+		-- Typescript
+		"typescript-language-server",
+		"prettierd",
 	},
 
 	-- if set to true this will check each tool for updates. If updates
