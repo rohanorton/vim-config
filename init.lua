@@ -10,3 +10,7 @@ require("rohan.packer")
 require("rohan.lsp")
 require("rohan.colorscheme")
 require("rohan.autocmds")
+
+if vim.g.neovide then
+	require("rohan.neovide")
+end
