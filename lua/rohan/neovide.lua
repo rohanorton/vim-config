@@ -11,3 +11,5 @@ local keymap_options = { silent = true, noremap = true }
 
 vim.keymap.set({ "n", "t", "v" }, "<D-v>", '"+p', keymap_options)
 vim.keymap.set({ "i", "c" }, "<D-v>", "<C-r>+", keymap_options)
+
+vim.opt.guifont = "MonoLisa Custom:h14"
