@@ -11,7 +11,6 @@
 -- 'v' = visual + block
 
 local map = vim.keymap.set
-local unmap = vim.keymap.del
 local silent = { silent = true }
 local noremap = { noremap = true }
 

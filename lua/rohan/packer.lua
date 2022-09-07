@@ -33,7 +33,7 @@ return packer.startup({
 		-- Statusline
 		use({
 			"nvim-lualine/lualine.nvim",
-			requires = { "kyazdani42/nvim-web-devicons", opt = true },
+			requires = { "kyazdani42/nvim-web-devicons" },
 		})
 
 		-- Kind Symbols
