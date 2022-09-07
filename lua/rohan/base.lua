@@ -61,3 +61,6 @@ g.python_host_prog = "~/.asdf/shims/python2"
 
 g.zoomwintab_remap = 0
 g.zoomwintab_hidetabbar = 0
+
+g.vimwiki_list = { { path = "~/vimwiki/", syntax = "markdown", ext = ".md" } }
+g.vimwiki_key_mappings = { headers = 0 }

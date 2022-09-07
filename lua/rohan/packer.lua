@@ -154,6 +154,15 @@ return packer.startup({
 			},
 		})
 
+		-- Zettelkasten
+		use({
+			"vimwiki/vimwiki",
+			"junegunn/goyo.vim",
+			"junegunn/limelight.vim",
+			"junegunn/fzf",
+			"junegunn/fzf.vim",
+		})
+
 		-- Automatically set up your configuration after cloning packer.nvim
 		if PACKER_BOOTSTRAP then
 			require("packer").sync()
