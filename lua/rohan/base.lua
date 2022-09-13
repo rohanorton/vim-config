@@ -49,6 +49,8 @@ opt.iskeyword = opt.iskeyword .. ",-" -- Treat dash separated words as word text
 
 opt.mouse = "a" -- Sometimes I like to use the mouse, ok!
 
+opt.laststatus = 3 -- Global statusline at bottom instead of for each window
+
 -- Improve timeout
 opt.timeoutlen = 200
 opt.ttimeoutlen = 0

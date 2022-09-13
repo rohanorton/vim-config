@@ -30,3 +30,8 @@ autocmd("BufEnter", {
 	end,
 	group = augroup("OnHelp", { clear = true }),
 })
+
+-- Hide cursorline on inactive windows
+local cursorline_group = augroup("CursorLine", { clear = true })
+autocmd("WinEnter", { pattern = "*", command = "set cul", group = cursorline_group })
+autocmd("WinLeave", { pattern = "*", command = "set nocul", group = cursorline_group })
