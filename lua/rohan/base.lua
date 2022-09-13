@@ -66,3 +66,5 @@ g.zoomwintab_hidetabbar = 0
 
 g.vimwiki_list = { { path = "~/vimwiki/", syntax = "markdown", ext = ".md" } }
 g.vimwiki_key_mappings = { headers = 0 }
+
+g.speeddating_no_mappings = true

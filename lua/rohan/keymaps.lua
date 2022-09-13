@@ -28,8 +28,10 @@ for _, keystrokes in pairs({ "jk", "kj" }) do
 end
 
 -- Replace <C-a> and <C-x> ... The former conflicts with tmux and I never rememeber the latter
-map({ "n", "x" }, "+", "<C-a>")
-map({ "n", "x" }, "_", "<C-x>")
+map({ "n", "x" }, "+", "<Plug>SpeedDatingUp")
+map({ "n", "x" }, "_", "<Plug>SpeedDatingDown")
+map("n", "<leader>+", "<Plug>SpeedDatingNowUTC")
+map("n", "<leader>_", "<Plug>SpeedDatingNowLocal")
 
 -- Clear Highlights
 map("n", "<Esc><Esc>", ":nohlsearch<CR>", silent)

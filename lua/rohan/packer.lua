@@ -109,6 +109,7 @@ return packer.startup({
 			"tpope/vim-abolish",
 			"tpope/vim-endwise", -- Like autopairs but for ruby/lua blocks with "end"
 			"tpope/vim-fugitive",
+			"tpope/vim-speeddating",
 		})
 
 		-- Comments
