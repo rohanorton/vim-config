@@ -1,4 +1,4 @@
-SAFE_REQUIRE({ "alpha", "alpha.themese.startify" }, function(alpha, startify)
+SAFE_REQUIRE({ "alpha", "alpha.themes.startify" }, function(alpha, startify)
 	alpha.setup(startify.opts)
 
 	startify.section.bottom_buttons.val = {
