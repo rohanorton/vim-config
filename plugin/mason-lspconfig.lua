@@ -1,6 +1,3 @@
-local ok, mason_lspconfig = pcall(require, "mason-lspconfig")
-if not ok then
-	return
-end
-
-mason_lspconfig.setup()
+SAFE_REQUIRE({ "mason-lspconfig" }, function(mason_lspconfig)
+	mason_lspconfig.setup()
+end)

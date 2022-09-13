@@ -1,12 +1,9 @@
-local ok, bufferline = pcall(require, "bufferline")
-if not ok then
-	return
-end
-
-bufferline.setup({
-	options = {
-		numbers = function(opts)
-			return string.format("[%s]", opts.ordinal)
-		end,
-	},
-})
+SAFE_REQUIRE({ "bufferline" }, function(bufferline)
+	bufferline.setup({
+		options = {
+			numbers = function(opts)
+				return string.format("[%s]", opts.ordinal)
+			end,
+		},
+	})
+end)

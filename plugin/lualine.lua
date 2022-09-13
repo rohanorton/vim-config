@@ -1,8 +1,5 @@
-local ok, lualine = pcall(require, "lualine")
-if not ok then
-	return
-end
-
-lualine.setup({
-	options = { theme = "auto" },
-})
+SAFE_REQUIRE({ "lualine" }, function(lualine)
+	lualine.setup({
+		options = { theme = "auto" },
+	})
+end)

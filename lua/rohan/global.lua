@@ -6,3 +6,16 @@ function P(...)
 	end
 	print(unpack(args))
 end
+
+function SAFE_REQUIRE(mods, callback)
+	local loaded = {}
+	for _, modname in ipairs(mods) do
+		local ok, mod = pcall(require, modname)
+		if not ok then
+			print("Missing module: " .. modname)
+			return
+		end
+		table.insert(loaded, mod)
+	end
+	callback(unpack(loaded))
+end
