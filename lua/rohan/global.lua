@@ -19,3 +19,12 @@ function SAFE_REQUIRE(mods, callback)
 	end
 	callback(unpack(loaded))
 end
+
+function RELOAD(...)
+	return require("plenary.reload").reload_module(...)
+end
+
+function R(name)
+	RELOAD(name)
+	return require(name)
+end
