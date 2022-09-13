@@ -164,6 +164,12 @@ return packer.startup({
 			"junegunn/fzf.vim",
 		})
 
+		use({
+			"tpope/vim-dadbod",
+			"kristijanhusak/vim-dadbod-ui",
+			"kristijanhusak/vim-dadbod-completion",
+		})
+
 		-- Automatically set up your configuration after cloning packer.nvim
 		if PACKER_BOOTSTRAP then
 			require("packer").sync()

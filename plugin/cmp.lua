@@ -53,5 +53,21 @@ SAFE_REQUIRE({ "cmp", "luasnip", "lspkind" }, function(cmp, luasnip, lspkind)
 		}),
 	})
 
+	local autocmd = vim.api.nvim_create_autocmd
+	local augroup = vim.api.nvim_create_augroup
 
+	-- Formatting
+	local sql_group = augroup("SqlGroup", { clear = true })
+	autocmd("FileType", {
+		pattern = "sql",
+		command = "setlocal omnifunc=vim_dadbod_completion#omni",
+		group = sql_group,
+	})
+	autocmd("FileType", {
+		pattern = { "sql", "mysql", "plsql" },
+		group = sql_group,
+		callback = function()
+			cmp.setup.buffer({ sources = { { name = "vim-dadbod-completion" } } })
+		end,
+	})
 end)
