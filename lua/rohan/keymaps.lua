@@ -27,6 +27,10 @@ for _, keystrokes in pairs({ "jk", "kj" }) do
 	map("n", keystrokes, ":w<CR>", noremap)
 end
 
+-- Replace <C-a> and <C-x> ... The former conflicts with tmux and I never rememeber the latter
+map({ "n", "x" }, "+", "<C-a>")
+map({ "n", "x" }, "_", "<C-x>")
+
 -- Clear Highlights
 map("n", "<Esc><Esc>", ":nohlsearch<CR>", silent)
 
