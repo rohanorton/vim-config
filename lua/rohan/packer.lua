@@ -148,6 +148,7 @@ return packer.startup({
 				"antoinemadec/FixCursorHold.nvim",
 				"vim-test/vim-test",
 				"nvim-neotest/neotest-vim-test",
+				"nvim-neotest/neotest-plenary",
 
 				-- Test Adapters
 				"haydenmeade/neotest-jest",
