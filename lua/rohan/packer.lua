@@ -67,6 +67,7 @@ return packer.startup({
 			"rafamadriz/friendly-snippets",
 		})
 
+		-- Rust
 		use({
 			"saecki/crates.nvim",
 			requires = { "nvim-lua/plenary.nvim" },
