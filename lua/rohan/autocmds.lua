@@ -20,17 +20,6 @@ local search_highlight_group = augroup("SearchHighlight", { clear = true })
 autocmd("InsertEnter", { pattern = "*", command = ":setlocal nohlsearch", group = search_highlight_group })
 autocmd("InsertLeave", { pattern = "*", command = ":setlocal hlsearch", group = search_highlight_group })
 
--- Make Help fullscreen
-autocmd("BufEnter", {
-	pattern = "*",
-	callback = function()
-		if vim.bo.filetype == "help" then
-			vim.cmd("ZoomWinTabIn")
-		end
-	end,
-	group = augroup("OnHelp", { clear = true }),
-})
-
 -- Hide cursorline on inactive windows
 local cursorline_group = augroup("CursorLine", { clear = true })
 autocmd("WinEnter", { pattern = "*", command = "set cul", group = cursorline_group })
