@@ -43,6 +43,10 @@ map("n", "<Esc><Esc>", ":nohlsearch<CR>", silent)
 -- Buffers
 map("n", "<Leader>b", ":buffers<CR>", noremap)
 
+-- Recenter
+map("n", "<C-d>", "<C-d>zz", noremap)
+map("n", "<C-u>", "<C-u>zz", noremap)
+
 -- Go to last file
 map("n", "gl", "<C-^>", noremap)
 
