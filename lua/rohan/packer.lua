@@ -157,15 +157,6 @@ return packer.startup({
 			},
 		})
 
-		-- Zettelkasten
-		use({
-			"vimwiki/vimwiki",
-			"junegunn/goyo.vim",
-			"junegunn/limelight.vim",
-			"junegunn/fzf",
-			"junegunn/fzf.vim",
-		})
-
 		use({
 			"tpope/vim-dadbod",
 			"kristijanhusak/vim-dadbod-ui",
