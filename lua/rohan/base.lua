@@ -68,3 +68,6 @@ g.vimwiki_list = { { path = "~/vimwiki/", syntax = "markdown", ext = ".md" } }
 g.vimwiki_key_mappings = { headers = 0 }
 
 g.speeddating_no_mappings = true
+
+opt.undodir = vim.fn.stdpath("config") .. "/.undo"
+opt.undofile = true
