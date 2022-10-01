@@ -21,6 +21,10 @@ vim.g.mapleader = " "
 -- Source file
 map("", "<leader>sf", "<Cmd>:source %<CR>", silent)
 
+-- Terminal Escape
+-- I really don't like this, but not sure what the best approach is :/
+map("t", "<Esc><Esc>", "<C-\\><C-n>", noremap)
+
 -- J.K. for Esc/Save
 for _, keystrokes in pairs({ "jk", "kj" }) do
 	map({ "!", "v", "o", "t" }, keystrokes, "<Esc>", noremap)
