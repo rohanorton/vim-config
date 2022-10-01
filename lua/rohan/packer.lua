@@ -163,6 +163,8 @@ return packer.startup({
 			"kristijanhusak/vim-dadbod-completion",
 		})
 
+		use("ThePrimeagen/harpoon")
+
 		-- Automatically set up your configuration after cloning packer.nvim
 		if PACKER_BOOTSTRAP then
 			require("packer").sync()

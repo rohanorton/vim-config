@@ -56,12 +56,6 @@ map("v", "J", ":move '>+1<CR>gv-gv", noremap)
 
 -- Telescope
 map("", "<C-p>", "<Cmd>Telescope find_files<CR>")
-map(
-	"n",
-	"<leader><leader>",
-	"<Cmd>lua require('telescope').extensions.frecency.frecency({ workspace = 'CWD' })<CR>",
-	{ noremap = true, silent = true }
-)
 
 map("n", "<Leader>p", "<Cmd>Telescope find_files<CR>")
 
@@ -81,7 +75,7 @@ map("n", "gw", vim.lsp.buf.workspace_symbol, silent)
 map("n", "gr", vim.lsp.buf.references, silent)
 map("n", "gt", vim.lsp.buf.type_definition, silent)
 map("n", "K", vim.lsp.buf.hover, silent)
-map("n", "<c-k>", vim.lsp.buf.signature_help, silent)
+map("n", "<leader>K", vim.lsp.buf.signature_help, silent)
 map("n", "<leader>af", vim.lsp.buf.code_action, silent)
 map("n", "cd", vim.lsp.buf.rename, silent)
 
