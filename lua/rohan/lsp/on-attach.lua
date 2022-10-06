@@ -8,7 +8,7 @@ return function(args)
 
 	return function(client, bufnr)
 		if args.document_formatting == false then
-			client.resolved_capabilities.document_formatting = false
+			client.server_capabilities.documentFormattingProvider = false
 		end
 
 		-- Enable completion triggered by <c-x><c-o>
