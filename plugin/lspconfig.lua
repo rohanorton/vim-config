@@ -4,11 +4,10 @@ SAFE_REQUIRE({ "lspconfig" }, function(lspconfig)
 		debounce_text_changes = 150,
 	}
 
-	local on_attach = require("rohan.lsp.on-attach")()
-	local on_attach_without_document_formatting = require("rohan.lsp.on-attach")({ document_formatting = false })
+	local on_attach = require("rohan.lsp.on-attach")
 
 	lspconfig["sumneko_lua"].setup({
-		on_attach = on_attach_without_document_formatting,
+		on_attach = on_attach,
 		flags = lsp_flags,
 		settings = require("rohan.lsp.settings.sumneko_lua"),
 	})
@@ -19,7 +18,7 @@ SAFE_REQUIRE({ "lspconfig" }, function(lspconfig)
 	})
 
 	lspconfig["tsserver"].setup({
-		on_attach = on_attach_without_document_formatting,
+		on_attach = on_attach,
 		flags = lsp_flags,
 	})
 end)

@@ -9,6 +9,6 @@ SAFE_REQUIRE({ "null-ls" }, function(null_ls)
 			formatting.prettierd,
 			code_actions.gitsigns,
 		},
-		on_attach = require("rohan.lsp.on-attach")(),
+		on_attach = require("rohan.lsp.on-attach")
 	})
 end)

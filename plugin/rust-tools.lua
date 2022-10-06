@@ -1,5 +1,5 @@
 SAFE_REQUIRE({ "rust-tools" }, function(rust_tools)
-	local on_attach_without_document_formatting = require("rohan.lsp.on-attach")({ document_formatting = false })
+	local on_attach = require("rohan.lsp.on-attach")
 
 	rust_tools.setup({
 		tools = {
@@ -10,7 +10,7 @@ SAFE_REQUIRE({ "rust-tools" }, function(rust_tools)
 			end,
 		},
 		server = {
-			on_attach = on_attach_without_document_formatting,
+			on_attach = on_attach,
 			settings = require("rohan.lsp.settings.rust_analyzer"),
 		},
 	})

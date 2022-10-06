@@ -4,7 +4,7 @@ local augroup = vim.api.nvim_create_augroup
 -- Formatting
 autocmd("BufWritePre", {
 	pattern = "*",
-	callback = vim.lsp.buf.formatting_sync,
+	callback = require("rohan.format"),
 	group = augroup("Formatting", { clear = true }),
 })
 
