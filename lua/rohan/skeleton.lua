@@ -11,12 +11,22 @@ local function file_is_empty()
 end
 
 local function insert_from_snippet(snippet_name)
-	if file_is_empty() then
-		snippet_name = snippet_name or "__skel"
-		local insert = "i"
-		local tab = KEYCODES.TAB
-		vim.api.nvim_feedkeys(insert .. snippet_name .. tab, "m", true)
-	end
+	SAFE_REQUIRE({ "luasnip" }, function(ls)
+		if file_is_empty() then
+			-- Use default snippet name if none provided.
+			snippet_name = snippet_name or "__skel"
+
+			-- Insert snippet text.
+			-- NOTE: Whitespace required at end of snippet, otherwise it doesn't expand
+			vim.api.nvim_set_current_line(snippet_name .. " ")
+
+			-- Go to end of snippet.
+			vim.api.nvim_win_set_cursor(0, { 1, string.len(snippet_name) })
+
+			-- Expand
+			ls.expand()
+		end
+	end)
 end
 
 return {
