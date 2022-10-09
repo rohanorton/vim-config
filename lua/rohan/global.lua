@@ -7,12 +7,18 @@ function P(...)
 	print(unpack(args))
 end
 
+local noop = function() end
+
 function SAFE_REQUIRE(mods, callback)
+	-- If mods is string, wrap in table.
+	mods = type(mods) == "table" and mods or { mods }
+	callback = callback or noop
+
 	local loaded = {}
 	for _, modname in ipairs(mods) do
 		local ok, mod = pcall(require, modname)
 		if not ok then
-			print("Missing module: " .. modname)
+			print("Unable to load module: " .. modname)
 			return
 		end
 		table.insert(loaded, mod)

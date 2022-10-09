@@ -1,16 +1,13 @@
--- Attempt to run impatient (speeds up lua load times)
-if not pcall(require, "impatient") then
-	print("Failed to load impatient.")
-end
-
+-- SAFE_REQUIRE is defined in globals, so have to use regular require
 require("rohan.global")
-require("rohan.base")
-require("rohan.keymaps")
-require("rohan.packer")
-require("rohan.lsp")
-require("rohan.colorscheme")
-require("rohan.autocmds")
+SAFE_REQUIRE("impatient") -- Speed up lua load times
+SAFE_REQUIRE("rohan.base")
+SAFE_REQUIRE("rohan.keymaps")
+SAFE_REQUIRE("rohan.packer")
+SAFE_REQUIRE("rohan.lsp")
+SAFE_REQUIRE("rohan.colorscheme")
+SAFE_REQUIRE("rohan.autocmds")
 
 if vim.g.neovide then
-	require("rohan.neovide")
+	SAFE_REQUIRE("rohan.neovide")
 end
