@@ -151,6 +151,9 @@ SAFE_REQUIRE("packer", function(packer)
 				"kristijanhusak/vim-dadbod-completion",
 			})
 
+			-- Read RFCs
+			use("mhinz/vim-rfc")
+
 			-- Automatically set up your configuration after cloning packer.nvim
 			if packer_bootstrap then
 				packer.sync()
