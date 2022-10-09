@@ -73,6 +73,7 @@ map("n", "<Leader>a", "<Cmd>Telescope live_grep<CR>")
 map("n", "<Leader>/", "<Cmd>Telescope live_grep<CR>")
 
 map("n", "<Leader>b", "<Cmd>Telescope buffers<CR>")
+map("n", "<leader><leader>", "<Cmd>Telescope buffers<CR>")
 
 map("n", "<Leader>h", "<Cmd>Telescope help_tags<CR>")
 
