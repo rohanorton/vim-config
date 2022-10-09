@@ -10,8 +10,18 @@
 -- '!' = insert + command
 -- 'v' = visual + block
 
-local map = vim.keymap.set
+local map = function(mode, lhs, rhs, ...)
+	local opts = {}
+	for _, opt in ipairs({ ... }) do
+		for k, v in pairs(opt) do
+			opts[k] = v
+		end
+	end
+	return vim.keymap.set(mode, lhs, rhs, opts)
+end
+
 local silent = { silent = true }
+local expr = { expr = true }
 local noremap = { noremap = true }
 
 -- <Space> as Leader Key
@@ -26,9 +36,9 @@ map("", "<leader>sf", "<Cmd>:source %<CR>", silent)
 map("t", "<Esc><Esc>", "<C-\\><C-n>", noremap)
 
 -- J.K. for Esc/Save
-for _, keystrokes in pairs({ "jk", "kj" }) do
+for _, keystrokes in ipairs({ "jk", "kj" }) do
 	map({ "!", "v", "o", "t" }, keystrokes, "<Esc>", noremap)
-	map("n", keystrokes, ":w<CR>", noremap)
+	map("n", keystrokes, ":w<CR>", noremap, silent)
 end
 
 -- Replace <C-a> and <C-x> ... The former conflicts with tmux and I never rememeber the latter
@@ -111,20 +121,10 @@ map("", "<leader>z", "<Cmd>ZoomWinTabToggle<CR>", noremap)
 -- Luasnips
 -- press <Tab> to expand or jump in a snippet. These can also be mapped separately
 -- via <Plug>luasnip-expand-snippet and <Plug>luasnip-jump-next.
-map(
-	"i",
-	"<Tab>",
-	"luasnip#expand_or_jumpable() ? '<Plug>luasnip-expand-or-jump' : '<Tab>'",
-	{ expr = true, silent = true }
-)
+map("i", "<Tab>", "luasnip#expand_or_jumpable() ? '<Plug>luasnip-expand-or-jump' : '<Tab>'", silent, expr)
 
-map({ "i", "s" }, "<C-l>", '<cmd>lua require("luasnip").jump(1)<CR>', { noremap = true, silent = true })
-map({ "i", "s" }, "<C-j>", '<cmd>lua require("luasnip").jump(-1)<CR>', { noremap = true, silent = true })
+map({ "i", "s" }, "<C-l>", '<cmd>lua require("luasnip").jump(1)<CR>', noremap, silent)
+map({ "i", "s" }, "<C-j>", '<cmd>lua require("luasnip").jump(-1)<CR>', noremap, silent)
 
 -- For changing choices in choiceNodes (not strictly necessary for a basic setup).
-map(
-	{ "i", "s" },
-	"<C-e>",
-	"luasnip#choice_active() ? '<Plug>luasnip-next-choice' : '<C-E>'",
-	{ expr = true, silent = true }
-)
+map({ "i", "s" }, "<C-e>", "luasnip#choice_active() ? '<Plug>luasnip-next-choice' : '<C-E>'", silent, expr)
