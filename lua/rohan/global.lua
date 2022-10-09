@@ -28,16 +28,3 @@ function R(name)
 	RELOAD(name)
 	return require(name)
 end
-
-local code = function(str)
-	return vim.api.nvim_replace_termcodes(
-		str, -- string to be converted
-		true, -- from_part. Legacy param
-		false, -- do_lt. Also translate <lt>
-		true -- special. Replace keycodes, e.g. <CR> becomes a "\r" char.
-	)
-end
-
-KEYCODES = {
-	TAB = code("<Tab>"),
-}
