@@ -118,13 +118,19 @@ map("n", "<leader>q", "<Cmd>bdelete<CR>", silent)
 -- Zoom Windows
 map("", "<leader>z", "<Cmd>ZoomWinTabToggle<CR>", noremap)
 
--- Luasnips
--- press <Tab> to expand or jump in a snippet. These can also be mapped separately
--- via <Plug>luasnip-expand-snippet and <Plug>luasnip-jump-next.
-map("i", "<Tab>", "luasnip#expand_or_jumpable() ? '<Plug>luasnip-expand-or-jump' : '<Tab>'", silent, expr)
+SAFE_REQUIRE({ "luasnip" }, function(ls)
+	-- Luasnips
+	-- press <Tab> to expand or jump in a snippet. These can also be mapped separately
+	-- via <Plug>luasnip-expand-snippet and <Plug>luasnip-jump-next.
+	map("i", "<Tab>", function()
+		return ls.expand_or_jumpable() and "<Plug>luasnip-expand-or-jump" or "<Tab>"
+	end, silent, expr)
 
-map({ "i", "s" }, "<C-l>", '<cmd>lua require("luasnip").jump(1)<CR>', noremap, silent)
-map({ "i", "s" }, "<C-j>", '<cmd>lua require("luasnip").jump(-1)<CR>', noremap, silent)
+	map({ "i", "s" }, "<C-l>", "<Plug>luasnip-jump-next", noremap, silent)
+	map({ "i", "s" }, "<C-j>", "<Plug>luasnip-jump-prev", noremap, silent)
 
--- For changing choices in choiceNodes (not strictly necessary for a basic setup).
-map({ "i", "s" }, "<C-e>", "luasnip#choice_active() ? '<Plug>luasnip-next-choice' : '<C-E>'", silent, expr)
+	-- For changing choices in choiceNodes (not strictly necessary for a basic setup).
+	map({ "i", "s" }, "<C-e>", function()
+		return ls.choice_active() and "<Plug>luasnip-next-choice" or "<C-E>"
+	end, silent, expr)
+end)
