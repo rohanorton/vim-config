@@ -1,7 +1,8 @@
 local ls = require("luasnip")
-local s = ls.s -- Snippet
-local i = ls.i -- Insert Node
-local t = ls.t -- Text Node
+local s = ls.snippet
+local i = ls.insert_node
+local t = ls.text_node
+local f = ls.function_node
 
 local fmt = require("luasnip.extras.fmt").fmt
 
