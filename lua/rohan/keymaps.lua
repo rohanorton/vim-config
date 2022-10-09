@@ -11,13 +11,13 @@
 -- 'v' = visual + block
 
 local map = function(mode, lhs, rhs, ...)
-	local opts = {}
-	for _, opt in ipairs({ ... }) do
-		for k, v in pairs(opt) do
-			opts[k] = v
-		end
-	end
-	return vim.keymap.set(mode, lhs, rhs, opts)
+  local opts = {}
+  for _, opt in ipairs({ ... }) do
+    for k, v in pairs(opt) do
+      opts[k] = v
+    end
+  end
+  return vim.keymap.set(mode, lhs, rhs, opts)
 end
 
 local silent = { silent = true }
@@ -37,8 +37,8 @@ map("t", "<Esc><Esc>", "<C-\\><C-n>", noremap)
 
 -- J.K. for Esc/Save
 for _, keystrokes in ipairs({ "jk", "kj" }) do
-	map({ "!", "v", "o", "t" }, keystrokes, "<Esc>", noremap)
-	map("n", keystrokes, ":w<CR>", noremap, silent)
+  map({ "!", "v", "o", "t" }, keystrokes, "<Esc>", noremap)
+  map("n", keystrokes, ":w<CR>", noremap, silent)
 end
 
 -- Replace <C-a> and <C-x> ... The former conflicts with tmux and I never rememeber the latter
@@ -114,18 +114,18 @@ map("n", "<leader>q", "<Cmd>bdelete<CR>", silent)
 map("", "<leader>z", "<Cmd>ZoomWinTabToggle<CR>", noremap)
 
 SAFE_REQUIRE({ "luasnip" }, function(ls)
-	-- Luasnips
-	-- press <Tab> to expand or jump in a snippet. These can also be mapped separately
-	-- via <Plug>luasnip-expand-snippet and <Plug>luasnip-jump-next.
-	map("i", "<Tab>", function()
-		return ls.expand_or_jumpable() and "<Plug>luasnip-expand-or-jump" or "<Tab>"
-	end, silent, expr)
+  -- Luasnips
+  -- press <Tab> to expand or jump in a snippet. These can also be mapped separately
+  -- via <Plug>luasnip-expand-snippet and <Plug>luasnip-jump-next.
+  map("i", "<Tab>", function()
+    return ls.expand_or_jumpable() and "<Plug>luasnip-expand-or-jump" or "<Tab>"
+  end, silent, expr)
 
-	map({ "i", "s" }, "<C-l>", "<Plug>luasnip-jump-next", noremap, silent)
-	map({ "i", "s" }, "<C-j>", "<Plug>luasnip-jump-prev", noremap, silent)
+  map({ "i", "s" }, "<C-l>", "<Plug>luasnip-jump-next", noremap, silent)
+  map({ "i", "s" }, "<C-j>", "<Plug>luasnip-jump-prev", noremap, silent)
 
-	-- For changing choices in choiceNodes (not strictly necessary for a basic setup).
-	map({ "i", "s" }, "<C-e>", function()
-		return ls.choice_active() and "<Plug>luasnip-next-choice" or "<C-E>"
-	end, silent, expr)
+  -- For changing choices in choiceNodes (not strictly necessary for a basic setup).
+  map({ "i", "s" }, "<C-e>", function()
+    return ls.choice_active() and "<Plug>luasnip-next-choice" or "<C-E>"
+  end, silent, expr)
 end)

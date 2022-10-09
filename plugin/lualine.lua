@@ -1,5 +1,5 @@
 SAFE_REQUIRE({ "lualine" }, function(lualine)
-	lualine.setup({
-		options = { theme = "auto" },
-	})
+  lualine.setup({
+    options = { theme = "auto" },
+  })
 end)

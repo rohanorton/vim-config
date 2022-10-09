@@ -1,3 +1,3 @@
 SAFE_REQUIRE({ "Comment" }, function(comment)
-	comment.setup()
+  comment.setup()
 end)

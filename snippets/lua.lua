@@ -12,27 +12,27 @@ local autosnippets = {}
 -- Lua Test
 -- TODO: Change to only be available in *_spec.lua files.
 local describe = s(
-	"describe",
-	fmt(
-		[[
+  "describe",
+  fmt(
+    [[
 describe("{}", function ()
   {}
 end)
 ]],
-		{ i(1, ""), i(2, "--") }
-	)
+    { i(1, ""), i(2, "--") }
+  )
 )
 
 local it = s(
-	"it",
-	fmt(
-		[[
+  "it",
+  fmt(
+    [[
 it("{}", function ()
   {}
 end)
 ]],
-		{ i(1, ""), i(2, "--") }
-	)
+    { i(1, ""), i(2, "--") }
+  )
 )
 table.insert(snippets, describe)
 table.insert(snippets, it)

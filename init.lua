@@ -9,5 +9,5 @@ SAFE_REQUIRE("rohan.colorscheme")
 SAFE_REQUIRE("rohan.autocmds")
 
 if vim.g.neovide then
-	SAFE_REQUIRE("rohan.neovide")
+  SAFE_REQUIRE("rohan.neovide")
 end

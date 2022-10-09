@@ -8,15 +8,15 @@ local snippets = {}
 local autosnippets = {}
 
 local get_current_year = function()
-	local now = vim.fn.localtime()
-	local current_year = vim.fn.strftime("%Y", now)
-	return current_year
+  local now = vim.fn.localtime()
+  local current_year = vim.fn.strftime("%Y", now)
+  return current_year
 end
 
 local mit = s(
-	"mit",
-	fmt(
-		[[MIT License
+  "mit",
+  fmt(
+    [[MIT License
 
 Copyright (c) {} {}
 
@@ -38,8 +38,8 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ]],
-		{ i(1, get_current_year()), i(2, "Rohan Orton") }
-	)
+    { i(1, get_current_year()), i(2, "Rohan Orton") }
+  )
 )
 
 table.insert(snippets, mit)

@@ -3,16 +3,16 @@ local augroup = vim.api.nvim_create_augroup
 
 -- Formatting
 autocmd("BufWritePre", {
-	pattern = "*",
-	callback = require("rohan.format"),
-	group = augroup("Formatting", { clear = true }),
+  pattern = "*",
+  callback = require("rohan.format"),
+  group = augroup("Formatting", { clear = true }),
 })
 
 -- Autocommand that reloads neovim whenever you save the plugins.lua file
 autocmd("BufWritePost", {
-	pattern = "packer.lua",
-	command = "source <afile> | PackerSync",
-	group = augroup("PluginConfigChanged", { clear = true }),
+  pattern = "packer.lua",
+  command = "source <afile> | PackerSync",
+  group = augroup("PluginConfigChanged", { clear = true }),
 })
 
 -- Search Highlighting
