@@ -29,6 +29,14 @@ local reduce = function(fn, xs, acc)
   return res
 end
 
+--- for_each
+local for_each = function(fn, xs)
+  for i, x in ipairs(xs) do
+    fn(x, i, xs)
+  end
+  return xs
+end
+
 --- map
 local map = function(fn, xs)
   local res = {}
@@ -86,4 +94,5 @@ return union(table, {
   reduce = reduce,
   map = map,
   filter = filter,
+  for_each = for_each,
 })

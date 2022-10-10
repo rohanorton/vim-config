@@ -32,10 +32,10 @@ map("", "<leader>sf", "<Cmd>:source %<CR>", silent)
 map("t", "<Esc><Esc>", "<C-\\><C-n>", noremap)
 
 -- J.K. for Esc/Save
-for _, keystrokes in ipairs({ "jk", "kj" }) do
+table.for_each(function(keystrokes)
   map({ "!", "v", "o", "t" }, keystrokes, "<Esc>", noremap)
   map("n", keystrokes, ":w<CR>", noremap, silent)
-end
+end, { "jk", "kj" })
 
 -- Replace <C-a> and <C-x> ... The former conflicts with tmux and I never rememeber the latter
 map({ "n", "x" }, "+", "<Plug>SpeedDatingUp")
