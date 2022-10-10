@@ -1,3 +1,5 @@
+local Set = require("rohan.util.set")
+
 -- Prevent certain clients from formatting
 vim.g.rohan__excluded_formatters = {
   "tsserver",
@@ -5,16 +7,12 @@ vim.g.rohan__excluded_formatters = {
 }
 
 local function format()
+  local excluded = Set(vim.g.rohan__excluded_formatters or {})
+
   vim.lsp.buf.format({
     async = false,
     filter = function(client)
-      local excluded = vim.g.rohan__excluded_formatters or {}
-      for _, name in ipairs(excluded) do
-        if client.name == name then
-          return false
-        end
-        return true
-      end
+      return not excluded[client.name]
     end,
   })
 end
