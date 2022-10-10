@@ -9,14 +9,10 @@
 -- ''  = normal + visual/block + command
 -- '!' = insert + command
 -- 'v' = visual + block
+local table = require("rohan.util.table")
 
 local map = function(mode, lhs, rhs, ...)
-  local opts = {}
-  for _, opt in ipairs({ ... }) do
-    for k, v in pairs(opt) do
-      opts[k] = v
-    end
-  end
+  local opts = table.combine(...)
   return vim.keymap.set(mode, lhs, rhs, opts)
 end
 
