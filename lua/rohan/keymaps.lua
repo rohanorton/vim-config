@@ -24,9 +24,6 @@ local noremap = { noremap = true }
 map("", "<Space>", "<NOP>")
 vim.g.mapleader = " "
 
--- Source file
-map("", "<leader>sf", "<Cmd>:source %<CR>", silent)
-
 -- Terminal Escape
 -- I really don't like this, but not sure what the best approach is :/
 map("t", "<Esc><Esc>", "<C-\\><C-n>", noremap)
@@ -35,6 +32,9 @@ map("t", "<Esc><Esc>", "<C-\\><C-n>", noremap)
 table.for_each(function(keystrokes)
   map({ "!", "v", "o", "t" }, keystrokes, "<Esc>", noremap)
   map("n", keystrokes, ":w<CR>", noremap, silent)
+
+  -- Source file
+  map("", "<leader>" .. keystrokes, "<Cmd>w<CR><Cmd>source %<CR>", silent)
 end, { "jk", "kj" })
 
 -- Replace <C-a> and <C-x> ... The former conflicts with tmux and I never rememeber the latter

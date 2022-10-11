@@ -154,6 +154,9 @@ SAFE_REQUIRE("packer", function(packer)
       -- Read RFCs
       use("mhinz/vim-rfc")
 
+      -- Nvim Plugin Developement
+      use("folke/lua-dev.nvim")
+
       -- Automatically set up your configuration after cloning packer.nvim
       if packer_bootstrap then
         packer.sync()
