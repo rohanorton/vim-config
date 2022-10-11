@@ -85,6 +85,15 @@ local combine = function(...)
   return reduce(union, { ... }, {})
 end
 
+-- size
+local size = function()
+  local i = 0
+  for _ in pairs(t) do
+    i = i + 1
+  end
+  return i
+end
+
 return union(table, {
   keys = keys,
   values = values,
@@ -95,4 +104,5 @@ return union(table, {
   map = map,
   filter = filter,
   for_each = for_each,
+  size = size,
 })
