@@ -1,12 +1,15 @@
+local path_exists = function(path)
+  return vim.fn.empty(vim.fn.glob(path)) == 0
+end
+
 local ensure_packer = function()
-  local fn = vim.fn
-  local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
-  if fn.empty(fn.glob(install_path)) > 0 then
-    fn.system({ "git", "clone", "--depth", "1", "https://github.com/wbthomason/packer.nvim", install_path })
-    vim.cmd([[packadd packer.nvim]])
-    return true
+  local install_path = vim.fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
+  if path_exists(install_path) then
+    return false
   end
-  return false
+  vim.fn.system({ "git", "clone", "--depth", "1", "https://github.com/wbthomason/packer.nvim", install_path })
+  vim.cmd("packadd packer.nvim")
+  return true
 end
 
 local packer_bootstrap = ensure_packer()
@@ -15,6 +18,16 @@ SAFE_REQUIRE("packer", function(packer)
   packer.startup({
 
     function(use)
+      local function use_local_or_fallback(local_addr, repo)
+        -- Check if local repo exists
+        if path_exists(local_addr) then
+          use(local_addr)
+        -- Otherwise use github repo
+        else
+          use(repo)
+        end
+      end
+
       -- Packer can manage itself
       use("wbthomason/packer.nvim")
 
@@ -156,6 +169,9 @@ SAFE_REQUIRE("packer", function(packer)
 
       -- Nvim Plugin Developement
       use("folke/lua-dev.nvim")
+
+      -- My Plugins...
+      use_local_or_fallback("~/Code/buffting.nvim", "rohanorton/buffting.nvim")
 
       -- Automatically set up your configuration after cloning packer.nvim
       if packer_bootstrap then

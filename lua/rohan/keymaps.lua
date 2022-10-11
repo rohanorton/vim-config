@@ -69,7 +69,6 @@ map("n", "<Leader>a", "<Cmd>Telescope live_grep<CR>")
 map("n", "<Leader>/", "<Cmd>Telescope live_grep<CR>")
 
 map("n", "<Leader>b", "<Cmd>Telescope buffers<CR>")
-map("n", "<leader><leader>", "<Cmd>Telescope buffers<CR>")
 
 map("n", "<Leader>h", "<Cmd>Telescope help_tags<CR>")
 
@@ -92,15 +91,17 @@ map("n", "]d", vim.diagnostic.goto_next, silent)
 map("n", "<leader>d", vim.diagnostic.setloclist, silent)
 
 -- Bufferline
-map("n", "<leader>1", "<Cmd>BufferLineGoToBuffer 1<CR>", silent)
-map("n", "<leader>2", "<Cmd>BufferLineGoToBuffer 2<CR>", silent)
-map("n", "<leader>3", "<Cmd>BufferLineGoToBuffer 3<CR>", silent)
-map("n", "<leader>4", "<Cmd>BufferLineGoToBuffer 4<CR>", silent)
-map("n", "<leader>5", "<Cmd>BufferLineGoToBuffer 5<CR>", silent)
-map("n", "<leader>6", "<Cmd>BufferLineGoToBuffer 6<CR>", silent)
-map("n", "<leader>7", "<Cmd>BufferLineGoToBuffer 7<CR>", silent)
-map("n", "<leader>8", "<Cmd>BufferLineGoToBuffer 8<CR>", silent)
-map("n", "<leader>9", "<Cmd>BufferLineGoToBuffer 9<CR>", silent)
+map("n", "<leader>0", "<Plug>buffting-jump-to-0", silent)
+map("n", "<leader>1", "<Plug>buffting-jump-to-1", silent)
+map("n", "<leader>2", "<Plug>buffting-jump-to-2", silent)
+map("n", "<leader>3", "<Plug>buffting-jump-to-3", silent)
+map("n", "<leader>4", "<Plug>buffting-jump-to-4", silent)
+map("n", "<leader>5", "<Plug>buffting-jump-to-5", silent)
+map("n", "<leader>6", "<Plug>buffting-jump-to-6", silent)
+map("n", "<leader>7", "<Plug>buffting-jump-to-7", silent)
+map("n", "<leader>8", "<Plug>buffting-jump-to-8", silent)
+map("n", "<leader>9", "<Plug>buffting-jump-to-9", silent)
+map("n", "<leader><leader>", "<Plug>buffting-open-menu", silent)
 
 -- Close buffers
 map("n", "<leader>x", "<Cmd>BufOnly<CR>", silent)
