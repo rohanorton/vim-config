@@ -172,6 +172,7 @@ SAFE_REQUIRE("packer", function(packer)
 
       -- My Plugins...
       use_local_or_fallback("~/Code/buffting.nvim", "rohanorton/buffting.nvim")
+      use_local_or_fallback("~/Code/lua-gf.nvim", "rohanorton/lua-gf.nvim")
 
       -- Automatically set up your configuration after cloning packer.nvim
       if packer_bootstrap then
