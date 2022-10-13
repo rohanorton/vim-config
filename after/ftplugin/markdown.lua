@@ -1,4 +1,4 @@
-vim.bo.formatoptions = ""
+vim.opt_local.formatoptions = ""
   .. "t" -- Auto-wrap
   .. "a" -- Auto-format paragraphs
   .. "c" -- Auto-wrap comments
