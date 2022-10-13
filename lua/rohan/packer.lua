@@ -62,6 +62,9 @@ SAFE_REQUIRE("packer", function(packer)
         "simrat39/rust-tools.nvim",
       })
 
+      -- LSP Loader
+      use("j-hui/fidget.nvim")
+
       -- Snippets
       use({
         "L3MON4D3/LuaSnip",
