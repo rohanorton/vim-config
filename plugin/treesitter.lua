@@ -9,6 +9,7 @@ SAFE_REQUIRE({ "nvim-treesitter.configs" }, function(configs)
       disable = { "" }, -- list of language that will be disabled
     },
     autopairs = { enable = true },
+    endwise = { enable = true },
     textobjects = {
       select = {
         enable = true,

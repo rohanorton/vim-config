@@ -104,7 +104,7 @@ SAFE_REQUIRE("packer", function(packer)
       use("elihunter173/dirbuf.nvim")
 
       -- Autopairs
-      use("windwp/nvim-autopairs")
+      use({ "windwp/nvim-autopairs", "RRethy/nvim-treesitter-endwise" })
 
       -- TPope plugins
       use({
@@ -112,7 +112,6 @@ SAFE_REQUIRE("packer", function(packer)
         "tpope/vim-repeat",
         "tpope/vim-unimpaired",
         "tpope/vim-abolish",
-        "tpope/vim-endwise", -- Like autopairs but for ruby/lua blocks with "end"
         "tpope/vim-fugitive",
         "tpope/vim-speeddating",
       })
