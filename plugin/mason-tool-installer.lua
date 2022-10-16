@@ -19,6 +19,9 @@ SAFE_REQUIRE({ "mason-tool-installer" }, function(installer)
       -- Elm
       "elm-language-server",
       "elm-format",
+      -- Python
+      "pyright",
+      "black",
     },
 
     -- if set to true this will check each tool for updates. If updates

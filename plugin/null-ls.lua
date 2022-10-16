@@ -7,6 +7,8 @@ SAFE_REQUIRE({ "null-ls" }, function(null_ls)
       formatting.stylua,
       formatting.rustfmt,
       formatting.prettierd,
+      formatting.black,
+      formatting.isort, -- Sort Python imports
       code_actions.gitsigns,
     },
     on_attach = require("rohan.lsp.on-attach"),
