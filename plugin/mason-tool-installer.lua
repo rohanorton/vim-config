@@ -16,6 +16,9 @@ SAFE_REQUIRE({ "mason-tool-installer" }, function(installer)
       -- Typescript
       "typescript-language-server",
       "prettierd",
+      -- Elm
+      "elm-language-server",
+      "elm-format",
     },
 
     -- if set to true this will check each tool for updates. If updates
