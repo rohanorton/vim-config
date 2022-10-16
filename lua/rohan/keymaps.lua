@@ -102,6 +102,8 @@ map("n", "<leader>7", "<Plug>buffting-jump-to-7", silent)
 map("n", "<leader>8", "<Plug>buffting-jump-to-8", silent)
 map("n", "<leader>9", "<Plug>buffting-jump-to-9", silent)
 map("n", "<leader><leader>", "<Plug>buffting-open-menu", silent)
+map("n", "<Left>", "<Plug>buffting-jump-to-prev", silent)
+map("n", "<Right>", "<Plug>buffting-jump-to-next", silent)
 
 -- Close buffers
 map("n", "<leader>x", "<Cmd>BufOnly<CR>", silent)
