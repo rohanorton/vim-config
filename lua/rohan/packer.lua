@@ -160,6 +160,16 @@ SAFE_REQUIRE("packer", function(packer)
         },
       })
 
+      -- Refactoring
+      use({
+        "ThePrimeagen/refactoring.nvim",
+        requires = {
+          { "nvim-lua/plenary.nvim" },
+          { "nvim-treesitter/nvim-treesitter" },
+        },
+      })
+
+      -- Database
       use({
         "tpope/vim-dadbod",
         "kristijanhusak/vim-dadbod-ui",

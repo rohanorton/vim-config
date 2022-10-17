@@ -215,4 +215,48 @@ SAFE_REQUIRE({ "which-key", "refactoring", "rohan.util.table" }, function(wk, re
       expr = true,
     },
   }, { mode = "s" })
+
+  -- stylua: ignore start
+  local extract_function = function() refactoring.refactor("Extract Function") end
+  local extract_function_to_file = function() refactoring.refactor("Extract Function To File") end
+  local extract_variable = function() refactoring.refactor("Extract Variable") end
+  local inline_variable = function() refactoring.refactor("Inline Variable") end
+  local extract_block = function() refactoring.refactor("Extract Block") end
+  local extract_block_to_file = function() refactoring.refactor("Extract Block To File") end
+  local select_refactoring = function() refactoring.select_refactor() end
+  local debug_print_var_visual = function() refactoring.debug.print_var({}) end
+  local debug_print_var_normal = function() refactoring.debug.print_var({normal = true}) end
+  local debug_cleanup = function() refactoring.debug.cleanup({}) end
+  -- stylua: ignore end
+
+  -- Remaps for the refactoring operations currently offered by the plugin
+  wk.register({
+    r = {
+      e = { extract_function, "Extract Function" },
+      f = { extract_function_to_file, "Extract Function To File" },
+      v = { extract_variable, "Extract Variable" },
+      i = { inline_variable, "Inline Variable" },
+      r = { select_refactoring, "Select Refactoring" },
+      dv = { debug_print_var_visual, "Debug Print Variable" },
+    },
+  }, {
+    mode = "v",
+    prefix = "<leader>",
+  })
+
+  wk.register({
+    r = {
+      -- Extract block doesn't need visual mode
+      b = { extract_block, "Extract Block" },
+      bf = { extract_block_to_file, "Extract Block To File" },
+      -- Inline variable can also pick up the identifier currently under the cursor without visual mode
+      i = { inline_variable, "Inline Variable" },
+      n = { "Rename Variable" },
+      dv = { debug_print_var_normal, "Debug Print Variable" },
+      dc = { debug_cleanup, "Debug Print Cleanup" },
+    },
+  }, {
+    mode = "n",
+    prefix = "<leader>",
+  })
 end)
