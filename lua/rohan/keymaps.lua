@@ -9,122 +9,210 @@
 -- ''  = normal + visual/block + command
 -- '!' = insert + command
 -- 'v' = visual + block
-local table = require("rohan.util.table")
 
-local map = function(mode, lhs, rhs, ...)
-  local opts = table.combine(...)
-  return vim.keymap.set(mode, lhs, rhs, opts)
-end
+SAFE_REQUIRE({ "which-key", "refactoring", "rohan.util.table" }, function(wk, refactoring, table)
+  -- <Space> as Leader Key
+  vim.keymap.set("", "<Space>", "<NOP>")
+  vim.g.mapleader = " "
 
-local silent = { silent = true }
-local expr = { expr = true }
-local noremap = { noremap = true }
+  -- Terminal Escape
+  -- I really don't like this, but not sure what the best approach is :/
+  wk.register({
+    ["<esc><esc>"] = { "<c-\\><c-n>", "Normal Mode" },
+  }, { mode = "t" })
 
--- <Space> as Leader Key
-map("", "<Space>", "<NOP>")
-vim.g.mapleader = " "
+  -- J.K. for Esc/Save
+  table.for_each(function(keys)
+    table.for_each(function(mode)
+      wk.register({
+        [keys] = { "<esc>", "Escape" },
+      }, { mode = mode })
+    end, { "i", "c", "v", "o", "t" })
 
--- Terminal Escape
--- I really don't like this, but not sure what the best approach is :/
-map("t", "<Esc><Esc>", "<C-\\><C-n>", noremap)
+    wk.register({
+      [keys] = { "<cmd>w<CR>", "Save" },
+    }, { mode = "n" })
 
--- J.K. for Esc/Save
-table.for_each(function(keystrokes)
-  map({ "!", "v", "o", "t" }, keystrokes, "<Esc>", noremap)
-  map("n", keystrokes, ":w<CR>", noremap, silent)
+    wk.register({
+      [keys] = { "<cmd>w<CR>source %<CR>", "Source File" },
+    }, { mode = "n", prefix = "<leader>" })
+  end, { "jk", "kj" })
 
-  -- Source file
-  map("", "<leader>" .. keystrokes, "<Cmd>w<CR><Cmd>source %<CR>", silent)
-end, { "jk", "kj" })
+  -- Replace <C-a> and <C-x> ... The former conflicts with tmux and I never rememeber the latter
+  wk.register({
+    ["+"] = { "<Plug>SpeedDatingUp", "Speed Dating Up" },
+    ["_"] = { "<Plug>SpeedDatingDown", "Speed Dating Down" },
+  }, {
+    mode = "x",
+  })
+  wk.register({
+    ["+"] = { "<Plug>SpeedDatingUp", "Speed Dating Up" },
+    ["_"] = { "<Plug>SpeedDatingDown", "Speed Dating Down" },
+  }, {
+    mode = "n",
+  })
+  wk.register({
+    ["+"] = { "<Plug>SpeedDatingNowUTC", "Speed Dating Now UTC" },
+    ["_"] = { "<Plug>SpeedDatingNowLocal", "Speed Dating Now Local" },
+  }, {
+    prefix = "<leader>",
+  })
 
--- Replace <C-a> and <C-x> ... The former conflicts with tmux and I never rememeber the latter
-map({ "n", "x" }, "+", "<Plug>SpeedDatingUp")
-map({ "n", "x" }, "_", "<Plug>SpeedDatingDown")
-map("n", "<leader>+", "<Plug>SpeedDatingNowUTC")
-map("n", "<leader>_", "<Plug>SpeedDatingNowLocal")
+  -- Clear Highlights
+  wk.register({
+    ["<esc><esc>"] = { "<cmd>nohlsearch<cr>", "Clear Search Highlight" },
+  })
 
--- Clear Highlights
-map("n", "<Esc><Esc>", ":nohlsearch<CR>", silent)
+  -- Paste over currently selected text without yanking it
+  wk.register({
+    p = { '"_dP', "Paste Without Yank" },
+  }, { mode = "v" })
 
--- Buffers
-map("n", "<Leader>b", ":buffers<CR>", noremap)
+  -- Buffers
+  wk.register({
+    b = { "<Cmd>buffers<CR>", "Buffer list" },
+  }, {
+    prefix = "<leader>",
+  })
 
--- Recenter
-map("n", "<C-d>", "<C-d>zz", noremap)
-map("n", "<C-u>", "<C-u>zz", noremap)
+  -- Recenter
+  wk.register({
+    ["<c-d>"] = { "<c-d>zz", "Centre on movement" },
+    ["<c-u>"] = { "<c-u>zz", "Centre on movement" },
+  })
 
--- Go to last file
-map("n", "gl", "<C-^>", noremap)
+  -- Go to last file
+  wk.register({
+    g = {
+      l = { "<c-^>", "Goto last file" },
+    },
+  })
 
--- Move Line
-map("v", "K", ":move '<-2<CR>gv-gv", noremap)
-map("v", "J", ":move '>+1<CR>gv-gv", noremap)
+  -- Move Line
+  wk.register({
+    K = { ":move '<-2<CR>gv-gv", "Move Line Up" },
+    J = { ":move '>+1<CR>gv-gv", "Move Line Down" },
+  }, { mode = "v" })
 
--- Telescope
-map("", "<C-p>", "<Cmd>Telescope find_files<CR>")
+  -- Telescope
+  wk.register({
+    ["<C-p>"] = { "<Cmd>Telescope find_files<CR>", "Find File" },
+  }, { mode = "" })
+  wk.register({
+    p = { "<Cmd>Telescope find_files<CR>", "Find File" },
+    a = { "<Cmd>Telescope live_grep<CR>", "Live Grep" },
+    ["/"] = { "<Cmd>Telescope live_grep<CR>", "Live Grep" },
+    b = { "<Cmd>Telescope buffers<CR>", "Find Buffer" },
+    h = { "<Cmd>Telescope help_tags<CR>", "Find Help" },
+  }, { prefix = "<leader>" })
 
-map("n", "<Leader>p", "<Cmd>Telescope find_files<CR>")
+  -- LSP
+  wk.register({
+    g = {
+      d = { vim.lsp.buf.definition, "Definition" },
+      D = { vim.lsp.buf.declaration, "Declaration" },
+      i = { vim.lsp.buf.implemenation, "Implemenation" },
+      w = { vim.lsp.buf.document_symbol, "Document Symbol" },
+      W = { vim.lsp.buf.workspace_symbol, "Workspace Symbol" },
+      r = { vim.lsp.buf.references, "References" },
+      t = { vim.lsp.buf.type_definition, "Type Definition" },
+      K = { vim.lsp.buf.hover, "Documentation" },
+    },
+  }, {})
 
-map("n", "<Leader>a", "<Cmd>Telescope live_grep<CR>")
-map("n", "<Leader>/", "<Cmd>Telescope live_grep<CR>")
+  wk.register({
+    ["<c-k>"] = { vim.lsp.buf.signature_help, "Signature Help" },
+  })
 
-map("n", "<Leader>b", "<Cmd>Telescope buffers<CR>")
+  wk.register({
+    e = { vim.diagnostic.open_float, "Open Floating Diagnostic Window" },
+    d = { vim.diagnostic.setloclist, "Set Loc List" },
+    af = { vim.lsp.buf.code_action, "Code Action" },
+  }, { prefix = "<leader>" })
 
-map("n", "<Leader>h", "<Cmd>Telescope help_tags<CR>")
+  wk.register({
+    cd = { vim.lsp.buf.rename, "Rename" },
+    ["[d"] = { vim.diagnostic.goto_prev, "Goto Previous Diagnostic" },
+    ["]d"] = { vim.diagnostic.goto_next, "Goto Next Diagnostic" },
+  })
 
--- LSP
-map("n", "gd", vim.lsp.buf.definition, silent)
-map("n", "gD", vim.lsp.buf.declaration, silent)
-map("n", "gi", vim.lsp.buf.implementation, silent)
-map("n", "gw", vim.lsp.buf.document_symbol, silent)
-map("n", "gw", vim.lsp.buf.workspace_symbol, silent)
-map("n", "gr", vim.lsp.buf.references, silent)
-map("n", "gt", vim.lsp.buf.type_definition, silent)
-map("n", "K", vim.lsp.buf.hover, silent)
-map("n", "<c-k>", vim.lsp.buf.signature_help, silent)
-map("n", "<leader>af", vim.lsp.buf.code_action, silent)
-map("n", "cd", vim.lsp.buf.rename, silent)
+  -- Bufferline
+  wk.register({
+    ["0"] = { "<Plug>buffting-jump-to-10", "Jump to buffer 10" },
+    ["1"] = { "<Plug>buffting-jump-to-1", "Jump to buffer 1" },
+    ["2"] = { "<Plug>buffting-jump-to-2", "Jump to buffer 2" },
+    ["3"] = { "<Plug>buffting-jump-to-3", "Jump to buffer 3" },
+    ["4"] = { "<Plug>buffting-jump-to-4", "Jump to buffer 4" },
+    ["5"] = { "<Plug>buffting-jump-to-5", "Jump to buffer 5" },
+    ["6"] = { "<Plug>buffting-jump-to-6", "Jump to buffer 6" },
+    ["7"] = { "<Plug>buffting-jump-to-7", "Jump to buffer 7" },
+    ["8"] = { "<Plug>buffting-jump-to-8", "Jump to buffer 8" },
+    ["9"] = { "<Plug>buffting-jump-to-9", "Jump to buffer 9" },
+  }, {
+    prefix = "<leader>",
+  })
 
-map("n", "<leader>e", vim.diagnostic.open_float, silent)
-map("n", "[d", vim.diagnostic.goto_prev, silent)
-map("n", "]d", vim.diagnostic.goto_next, silent)
-map("n", "<leader>d", vim.diagnostic.setloclist, silent)
+  -- Close buffers
+  wk.register({
+    x = { "<Cmd>BuffOnly<CR>", "Close Other Buffers" },
+    q = { "<Cmd>bdelete<CR>", "Close Buffer" },
+  }, {
+    prefix = "<leader>",
+  })
 
--- Bufferline
-map("n", "<leader>0", "<Plug>buffting-jump-to-0", silent)
-map("n", "<leader>1", "<Plug>buffting-jump-to-1", silent)
-map("n", "<leader>2", "<Plug>buffting-jump-to-2", silent)
-map("n", "<leader>3", "<Plug>buffting-jump-to-3", silent)
-map("n", "<leader>4", "<Plug>buffting-jump-to-4", silent)
-map("n", "<leader>5", "<Plug>buffting-jump-to-5", silent)
-map("n", "<leader>6", "<Plug>buffting-jump-to-6", silent)
-map("n", "<leader>7", "<Plug>buffting-jump-to-7", silent)
-map("n", "<leader>8", "<Plug>buffting-jump-to-8", silent)
-map("n", "<leader>9", "<Plug>buffting-jump-to-9", silent)
-map("n", "<leader><leader>", "<Plug>buffting-open-menu", silent)
-map("n", "<Left>", "<Plug>buffting-jump-to-prev", silent)
-map("n", "<Right>", "<Plug>buffting-jump-to-next", silent)
+  -- Zoom Windows
+  wk.register({
+    z = { "<Cmd>ZoomWinTabToggle<CR>", "Zoom Window Toggle" },
+  }, {
+    mode = "",
+    prefix = "<leader>",
+  })
 
--- Close buffers
-map("n", "<leader>x", "<Cmd>BufOnly<CR>", silent)
-map("n", "<leader>q", "<Cmd>bdelete<CR>", silent)
+  table.for_each(function(mode)
+    wk.register({
+      ["<S-Tab>"] = {
+        "<C-d>",
+        "De-Tab",
+      },
+    }, { mode = mode })
+  end, { "n", "i" })
 
--- Zoom Windows
-map("", "<leader>z", "<Cmd>ZoomWinTabToggle<CR>", noremap)
-
-SAFE_REQUIRE({ "luasnip" }, function(ls)
   -- Luasnips
   -- press <Tab> to expand or jump in a snippet. These can also be mapped separately
   -- via <Plug>luasnip-expand-snippet and <Plug>luasnip-jump-next.
-  map("i", "<Tab>", function()
-    return ls.expand_or_jumpable() and "<Plug>luasnip-expand-or-jump" or "<Tab>"
-  end, silent, expr)
+  wk.register({
+    ["<Tab>"] = {
+      "luasnip#expand_or_jumpable() ? '<Plug>luasnip-expand-or-jump' : '<Tab>'",
+      "Luasnip expand or jump",
+      expr = true,
+    },
+    ["<S-Tab>"] = {
+      "luasnip#jumpable(-1) ? '<Plug>luasnip-jump-prev' : '<C-D>'",
+      "Luasnip Jump Previous",
+      expr = true,
+    },
+    ["<c-l>"] = { "<Plug>luasnip-jump-next", "Luasnip Jump Next" },
+    ["<c-j>"] = { "<Plug>luasnip-jump-prev", "Luasnip Jump Previous" },
+    ["<c-e>"] = {
+      "luasnip#choice_active() ? '<Plug>luasnip-next-choice' : '<C-E>'",
+      "Luasnip Next Choice",
+      expr = true,
+    },
+  }, { mode = "i" })
 
-  map({ "i", "s" }, "<C-l>", "<Plug>luasnip-jump-next", noremap, silent)
-  map({ "i", "s" }, "<C-j>", "<Plug>luasnip-jump-prev", noremap, silent)
-
-  -- For changing choices in choiceNodes (not strictly necessary for a basic setup).
-  map({ "i", "s" }, "<C-e>", function()
-    return ls.choice_active() and "<Plug>luasnip-next-choice" or "<C-E>"
-  end, silent, expr)
+  wk.register({
+    ["<c-l>"] = { "<Plug>luasnip-jump-next", "Luasnip Jump Next" },
+    ["<c-j>"] = { "<Plug>luasnip-jump-prev", "Luasnip Jump Previous" },
+    ["<S-Tab>"] = {
+      "luasnip#jumpable(-1) ? '<Plug>luasnip-jump-prev' : '<C-D>'",
+      "Luasnip Jump Previous",
+      expr = true,
+    },
+    -- For changing choices in choiceNodes (not strictly necessary for a basic setup).
+    ["<c-e>"] = {
+      "luasnip#choice_active() ? '<Plug>luasnip-next-choice' : '<C-E>'",
+      "Luasnip Next Choice",
+      expr = true,
+    },
+  }, { mode = "s" })
 end)

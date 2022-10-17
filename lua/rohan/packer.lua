@@ -166,6 +166,7 @@ SAFE_REQUIRE("packer", function(packer)
         "kristijanhusak/vim-dadbod-completion",
       })
 
+      use("folke/which-key.nvim")
       -- Read RFCs
       use("mhinz/vim-rfc")
 
