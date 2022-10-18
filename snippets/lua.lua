@@ -41,6 +41,34 @@ end)
 
 table.insert(snippets, it)
 
+local if_ = s(
+  "if ",
+  fmt(
+    [[
+if {} then
+  {}
+end
+]],
+    { i(1, ""), i(2, "") }
+  )
+)
+table.insert(autosnippets, if_)
+
+local if_else = s(
+  "ifelse ",
+  fmt(
+    [[
+if {} then
+  {}
+else
+  {}
+end
+]],
+    { i(1, ""), i(2, ""), i(3, "") }
+  )
+)
+table.insert(autosnippets, if_else)
+
 local dot_if = p(".if", {
   d(1, function(_, parent)
     return sn(
