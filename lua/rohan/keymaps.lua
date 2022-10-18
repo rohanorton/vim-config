@@ -168,14 +168,12 @@ SAFE_REQUIRE({ "which-key", "refactoring", "rohan.util.table" }, function(wk, re
     prefix = "<leader>",
   })
 
-  table.for_each(function(mode)
-    wk.register({
-      ["<S-Tab>"] = {
-        "<C-d>",
-        "De-Tab",
-      },
-    }, { mode = mode })
-  end, { "n", "i" })
+  wk.register({
+    ["<S-Tab>"] = {
+      "<C-d>",
+      "De-Tab",
+    },
+  }, { mode = "i" })
 
   -- Luasnips
   -- press <Tab> to expand or jump in a snippet. These can also be mapped separately
