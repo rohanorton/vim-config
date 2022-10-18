@@ -71,3 +71,6 @@ g.speeddating_no_mappings = true
 
 opt.undodir = vim.fn.stdpath("config") .. "/.undo"
 opt.undofile = true
+
+-- Allow up to 4 signs in gutter
+vim.o.signcolumn = "auto:4"

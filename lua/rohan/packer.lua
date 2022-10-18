@@ -135,6 +135,9 @@ SAFE_REQUIRE("packer", function(packer)
       use({ "akinsho/bufferline.nvim", tag = "v2.*", requires = "kyazdani42/nvim-web-devicons" })
       use({ "numtostr/BufOnly.nvim" })
 
+      -- Marks
+      use("chentoast/marks.nvim")
+
       -- Highlight instances of word under cursor
       use("RRethy/vim-illuminate")
 
