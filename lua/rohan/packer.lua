@@ -141,6 +141,9 @@ SAFE_REQUIRE("packer", function(packer)
       -- Highlight instances of word under cursor
       use("RRethy/vim-illuminate")
 
+      -- Indent lines
+      use("lukas-reineke/indent-blankline.nvim")
+
       -- Zoom split windows
       use("troydm/zoomwintab.vim")
 
