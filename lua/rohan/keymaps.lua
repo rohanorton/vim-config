@@ -30,11 +30,11 @@ SAFE_REQUIRE({ "which-key", "refactoring", "rohan.util.table" }, function(wk, re
     end, { "i", "c", "v", "o", "t" })
 
     wk.register({
-      [keys] = { "<cmd>w<CR>", "Save" },
+      [keys] = { "<cmd>write<CR>", "Save File" },
     }, { mode = "n" })
 
     wk.register({
-      [keys] = { "<cmd>w<CR>source %<CR>", "Source File" },
+      [keys] = { "<cmd>write | source %<CR>", "Save and Source File" },
     }, { mode = "n", prefix = "<leader>" })
   end, { "jk", "kj" })
 
