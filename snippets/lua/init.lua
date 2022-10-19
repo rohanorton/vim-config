@@ -1,23 +1,21 @@
--- NOTE: Because luasnip loads snippet files in a new context, require path is a bit busted.
-local function require_from_vim_root(modname)
-  return dofile(vim.env.HOME .. "/.config/nvim/" .. modname .. ".lua")
-end
+local snippet_path = vim.env.HOME .. "/.config/nvim/snippets/?.lua"
+package.path = table.concat({ snippet_path, package.path }, ";")
 
 local snippets = {
   -- Test Specific
-  require_from_vim_root("snippets/lua/describe"),
-  require_from_vim_root("snippets/lua/it"),
+  require("lua.describe"),
+  require("lua.it"),
 
   -- Conditional
-  require_from_vim_root("snippets/lua/if"),
-  require_from_vim_root("snippets/lua/if_else"),
+  require("lua.if"),
+  require("lua.if_else"),
 
   -- Postfix
-  require_from_vim_root("snippets/lua/dot_fn"),
-  require_from_vim_root("snippets/lua/dot_if"),
-  require_from_vim_root("snippets/lua/dot_else"),
-  require_from_vim_root("snippets/lua/dot_br"),
-  require_from_vim_root("snippets/lua/dot_var"),
+  require("lua.dot_fn"),
+  require("lua.dot_if"),
+  require("lua.dot_else"),
+  require("lua.dot_br"),
+  require("lua.dot_var"),
 }
 local autosnippets = {}
 
