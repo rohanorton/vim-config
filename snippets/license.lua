@@ -7,12 +7,6 @@ local fmt = require("luasnip.extras.fmt").fmt
 local snippets = {}
 local autosnippets = {}
 
-local get_current_year = function()
-  local now = vim.fn.localtime()
-  local current_year = vim.fn.strftime("%Y", now)
-  return current_year
-end
-
 local mit = s(
   "mit",
   fmt(
@@ -38,7 +32,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ]],
-    { i(1, get_current_year()), i(2, "Rohan Orton") }
+    { i(1, os.date("%Y")), i(2, "Rohan Orton") }
   )
 )
 
