@@ -39,6 +39,16 @@ SAFE_REQUIRE(
       }, { mode = "n", prefix = "<leader>" })
     end, { "jk", "kj" })
 
+    wk.register({
+      gq = { "<cmd>q<cr>", "Quit" },
+      gqq = { "<cmd>q!<cr>", "No, really, quit!" },
+      gqa = { "<cmd>qall<cr>", "Quit all" },
+      gwa = { "<cmd>wall<cr>", "Write all" },
+      gwq = { "<cmd>wq<cr>", "Write quit" },
+    }, {
+      mode = "n",
+    })
+
     -- Replace <C-a> and <C-x> ... The former conflicts with tmux and I never rememeber the latter
     wk.register({
       ["+"] = { "<Plug>SpeedDatingUp", "Speed Dating Up" },
@@ -102,10 +112,12 @@ SAFE_REQUIRE(
 
     wk.register({
       p = { telescope_builtin.find_files, "Find File" },
-      a = { telescope_builtin.live_grep, "Live Grep" },
+      f = { telescope_builtin.live_grep, "Live Grep" },
       b = { telescope_builtin.buffers, "Find Buffer" },
       h = { telescope_builtin.help_tags, "Find Help" },
       m = { telescope_builtin.marks, "Search Marks" },
+      o = { telescope_builtin.oldfiles, "Old Files" },
+
       ["/"] = { telescope_builtin.search_history, "Search History" },
       ["#"] = { telescope_builtin.grep_string, "Search workspace for string under cursor" },
     }, { prefix = "<leader>" })
