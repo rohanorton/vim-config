@@ -1,6 +1,3 @@
-local snippet_path = vim.env.HOME .. "/.config/nvim/snippets/?.lua"
-package.path = table.concat({ snippet_path, package.path }, ";")
-
 local snippets = {
   -- Test Specific
   require("lua.describe"),
