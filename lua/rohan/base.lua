@@ -74,3 +74,6 @@ opt.undofile = true
 
 -- Allow up to 4 signs in gutter
 vim.o.signcolumn = "auto:4"
+
+vim.o.ttyfast = true
+vim.o.lazyredraw = true
