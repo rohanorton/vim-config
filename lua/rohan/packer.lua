@@ -67,7 +67,7 @@ SAFE_REQUIRE("packer", function(packer)
 
       -- Snippets
       use({
-        -- "L3MON4D3/LuaSnip",
+        "L3MON4D3/LuaSnip",
         "rafamadriz/friendly-snippets",
       })
 
@@ -193,7 +193,6 @@ SAFE_REQUIRE("packer", function(packer)
       use_local_or_fallback("~/Code/buffting.nvim", "rohanorton/buffting.nvim")
       use_local_or_fallback("~/Code/lua-gf.nvim", "rohanorton/lua-gf.nvim")
       use_local_or_fallback("~/Code/no-autowrap-codeblock.nvim", "rohanorton/no-autowrap-codeblock.nvim")
-      use_local_or_fallback("~/Code/LuaSnip", { "rohanorton/LuaSnip", branch = "add-path-to-luasnips-loader" })
 
       -- Automatically set up your configuration after cloning packer.nvim
       if packer_bootstrap then
