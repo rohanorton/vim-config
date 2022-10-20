@@ -11,4 +11,4 @@ local dot_var = p(".var", {
   end),
 })
 
-return dot_var
+return { dot_var }, {}

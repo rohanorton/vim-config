@@ -40,4 +40,4 @@ local fn = s(
   })
 )
 
-return fn
+return { fn }, {}

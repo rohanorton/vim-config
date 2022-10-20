@@ -15,4 +15,4 @@ end)
   )
 )
 
-return describe
+return { describe }, {}

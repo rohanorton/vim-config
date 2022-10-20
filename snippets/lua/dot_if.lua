@@ -21,4 +21,4 @@ end
   end),
 })
 
-return dot_if
+return { dot_if }, {}

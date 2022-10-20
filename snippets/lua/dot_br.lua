@@ -42,4 +42,4 @@ local dot_br = p(".br", {
   end),
 })
 
-return dot_br
+return { dot_br }, {}

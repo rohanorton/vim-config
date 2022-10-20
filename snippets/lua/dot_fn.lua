@@ -56,4 +56,4 @@ local dot_fn = p(".fn", {
   end),
 })
 
-return dot_fn
+return { dot_fn }, {}
