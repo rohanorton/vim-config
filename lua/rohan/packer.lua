@@ -190,6 +190,9 @@ SAFE_REQUIRE("packer", function(packer)
       -- Terminal
       use("akinsho/toggleterm.nvim")
 
+      -- Colors
+      use("norcalli/nvim-colorizer.lua")
+
       -- My Plugins...
       use_local_or_fallback("~/Code/buffting.nvim", "rohanorton/buffting.nvim")
       use_local_or_fallback("~/Code/lua-gf.nvim", "rohanorton/lua-gf.nvim")
