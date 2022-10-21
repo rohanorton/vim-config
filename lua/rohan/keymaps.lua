@@ -154,6 +154,7 @@ SAFE_REQUIRE(
 
     -- Bufferline
     wk.register({
+      ["<leader>"] = { "<Plug>buffting-open-menu", "Open buffting menu" },
       ["0"] = { "<Plug>buffting-jump-to-10", "Jump to buffer 10" },
       ["1"] = { "<Plug>buffting-jump-to-1", "Jump to buffer 1" },
       ["2"] = { "<Plug>buffting-jump-to-2", "Jump to buffer 2" },
