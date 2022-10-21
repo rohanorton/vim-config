@@ -2,8 +2,9 @@ SAFE_REQUIRE("gruvbox", function(gruvbox)
   -- Setup must be called before loading the colorscheme
   gruvbox.setup({
     overrides = {
-      SignColumn = { bg = "#292929" },
+      SignColumn = { link = "NormalNC" },
     },
+    palette_overrides = {},
 
     -- Defaults...
     undercurl = true,
@@ -17,6 +18,8 @@ SAFE_REQUIRE("gruvbox", function(gruvbox)
     invert_intend_guides = false,
     inverse = true, -- invert background for search, diffs, statuslines and errors
     contrast = "", -- can be "hard", "soft" or empty string
+    dim_inactive = false,
+    transparent_mode = false,
   })
 
   -- Load colorscheme
