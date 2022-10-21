@@ -4,12 +4,7 @@ SAFE_REQUIRE("toggleterm", function(toggleterm)
     insert_mappings = true,
     shade_terminals = false,
     direction = "float",
-    -- size = function(term)
-    --   if term.direction == "horizontal" then
-    --     return 100
-    --   elseif term.direction == "vertical" then
-    --     return 116
-    --   end
-    -- end,
+    persist_mode = false,
+    persist_size = false,
   })
 end)
