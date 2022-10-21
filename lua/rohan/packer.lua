@@ -162,6 +162,7 @@ SAFE_REQUIRE("packer", function(packer)
           "haydenmeade/neotest-jest",
         },
       })
+      use("andythigpen/nvim-coverage")
 
       -- Refactoring
       use({
