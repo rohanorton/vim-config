@@ -1,6 +1,8 @@
 SAFE_REQUIRE(
   { "neotest", "neotest-jest", "neotest-vim-test", "neotest-plenary" },
   function(neotest, neotest_jest, neotest_vim_test, neotest_plenary)
+    vim.cmd([[let test#strategy = "toggleterm"]])
+
     neotest.setup({
       adapters = {
         neotest_jest({
