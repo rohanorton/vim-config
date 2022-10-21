@@ -1,9 +1,24 @@
 SAFE_REQUIRE({ "gitsigns" }, function(gitsigns)
   gitsigns.setup({
     signs = {
-      add = { hl = "GitSignsAdd", text = "│", numhl = "GitSignsAddNr", linehl = "GitSignsAddLn" },
-      change = { hl = "GitSignsChange", text = "│", numhl = "GitSignsChangeNr", linehl = "GitSignsChangeLn" },
-      delete = { hl = "GitSignsDelete", text = "_", numhl = "GitSignsDeleteNr", linehl = "GitSignsDeleteLn" },
+      add = {
+        hl = "GitSignsAdd",
+        text = "│",
+        numhl = "GitSignsAddNr",
+        linehl = "GitSignsAddLn",
+      },
+      change = {
+        hl = "GitSignsChange",
+        text = "│",
+        numhl = "GitSignsChangeNr",
+        linehl = "GitSignsChangeLn",
+      },
+      delete = {
+        hl = "GitSignsDelete",
+        text = "_",
+        numhl = "GitSignsDeleteNr",
+        linehl = "GitSignsDeleteLn",
+      },
       topdelete = {
         hl = "GitSignsDelete",
         text = "‾",
@@ -17,8 +32,8 @@ SAFE_REQUIRE({ "gitsigns" }, function(gitsigns)
         linehl = "GitSignsChangeLn",
       },
     },
-    signcolumn = true, -- Toggle with `:Gitsigns toggle_signs`
-    numhl = false, -- Toggle with `:Gitsigns toggle_numhl`
+    signcolumn = false, -- Toggle with `:Gitsigns toggle_signs`
+    numhl = true, -- Toggle with `:Gitsigns toggle_numhl`
     linehl = false, -- Toggle with `:Gitsigns toggle_linehl`
     word_diff = false, -- Toggle with `:Gitsigns toggle_word_diff`
     watch_gitdir = {

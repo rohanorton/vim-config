@@ -1,10 +1,8 @@
 SAFE_REQUIRE("gruvbox", function(gruvbox)
   -- Setup must be called before loading the colorscheme
   gruvbox.setup({
-    -- Add custom overrides here
     overrides = {
-      -- E.G.
-      -- SignColumn = {bg = "#ff9900"}
+      SignColumn = { bg = "#292929" },
     },
 
     -- Defaults...

@@ -73,7 +73,7 @@ opt.undodir = vim.fn.stdpath("config") .. "/.undo"
 opt.undofile = true
 
 -- Allow up to 4 signs in gutter
-vim.o.signcolumn = "auto:4"
+vim.o.signcolumn = "yes:1"
 
 vim.o.ttyfast = true
 vim.o.lazyredraw = true
