@@ -10,8 +10,8 @@
 -- '!' = insert + command
 -- 'v' = visual + block
 SAFE_REQUIRE(
-  { "which-key", "refactoring", "telescope.builtin", "toggleterm.terminal", "rohan.util.table" },
-  function(wk, refactoring, telescope_builtin, tt, table)
+  { "which-key", "refactoring", "telescope.builtin", "toggleterm.terminal", "pl.tablex" },
+  function(wk, refactoring, telescope_builtin, tt, tablex)
     -- <Space> as Leader Key
     vim.keymap.set("", "<Space>", "<NOP>")
     vim.g.mapleader = " "
@@ -23,12 +23,12 @@ SAFE_REQUIRE(
     }, { mode = "t" })
 
     -- J.K. for Esc/Save
-    table.for_each(function(keys)
-      table.for_each(function(mode)
+    tablex.foreachi({ "jk", "kj" }, function(keys)
+      tablex.foreachi({ "i", "c", "v", "o" }, function(mode)
         wk.register({
           [keys] = { "<esc>", "Escape" },
         }, { mode = mode })
-      end, { "i", "c", "v", "o" })
+      end)
 
       wk.register({
         [keys] = { "<Cmd>write<CR>", "Save File" },
@@ -37,7 +37,7 @@ SAFE_REQUIRE(
       wk.register({
         [keys] = { "<Cmd>write | source %<CR>", "Save and Source File" },
       }, { mode = "n", prefix = "<leader>" })
-    end, { "jk", "kj" })
+    end)
 
     wk.register({
       gq = { "<cmd>q<cr>", "Quit" },

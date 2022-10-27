@@ -14,7 +14,7 @@ end
 
 local packer_bootstrap = ensure_packer()
 
-SAFE_REQUIRE("packer", function(packer)
+SAFE_REQUIRE({ "packer", "packer.luarocks" }, function(packer, luarocks)
   packer.startup({
 
     function(use)
@@ -197,6 +197,9 @@ SAFE_REQUIRE("packer", function(packer)
       use_local_or_fallback("~/Code/buffting.nvim", "rohanorton/buffting.nvim")
       use_local_or_fallback("~/Code/lua-gf.nvim", "rohanorton/lua-gf.nvim")
       use_local_or_fallback("~/Code/no-autowrap-codeblock.nvim", "rohanorton/no-autowrap-codeblock.nvim")
+
+      packer.use_rocks("penlight")
+      luarocks.setup_paths()
 
       -- Automatically set up your configuration after cloning packer.nvim
       if packer_bootstrap then
