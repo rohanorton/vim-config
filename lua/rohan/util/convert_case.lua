@@ -1,43 +1,45 @@
 local stringx = require("pl.stringx")
+local class = require("pl.class")
 
-local Convert = function(str)
-  local self = {}
-  local normalised_str = str
+local function normalise(str)
+  return str
     -- replace underscores and hyphens with spaces
     :gsub("[_-]", " ")
     -- replace capitals
     :gsub("%u", function(c)
       return " " .. c:lower()
     end)
+end
 
-  local words = stringx.split(normalised_str, " ")
+local Convert = class()
 
-  self.to_camel_case = function()
-    local res = ""
-    for i, word in ipairs(words) do
-      local subbed = i == 1 and word or word:gsub("^%l", string.upper)
-      res = res .. subbed
-    end
-    return res
+function Convert:_init(str)
+  self.words = stringx.split(normalise(str), " ")
+end
+
+function Convert:to_camel_case()
+  local res = ""
+  for i, word in ipairs(self.words) do
+    local subbed = i == 1 and word or word:gsub("^%l", string.upper)
+    res = res .. subbed
   end
+  return res
+end
 
-  self.to_snake_case = function()
-    return table.concat(words, "_")
+function Convert:to_snake_case()
+  return table.concat(self.words, "_")
+end
+
+function Convert:to_kebab_case()
+  return table.concat(self.words, "-")
+end
+
+function Convert:to_pascal_case()
+  local res = ""
+  for _, word in ipairs(self.words) do
+    res = res .. word:gsub("^%l", string.upper)
   end
-
-  self.to_kebab_case = function()
-    return table.concat(words, "-")
-  end
-
-  self.to_pascal_case = function()
-    local res = ""
-    for _, word in ipairs(words) do
-      res = res .. word:gsub("^%l", string.upper)
-    end
-    return res
-  end
-
-  return self
+  return res
 end
 
 return Convert

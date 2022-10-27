@@ -25,7 +25,7 @@ export class <class_name>Component implements OnInit {
     template_name = i(2, "name"),
     class_name = f(function(args)
       local word = args[1][1]
-      return Convert(word).to_pascal_case()
+      return Convert(word):to_pascal_case()
     end, { 2 }),
   }
 )
