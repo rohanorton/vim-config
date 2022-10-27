@@ -31,4 +31,9 @@ SAFE_REQUIRE({ "lspconfig" }, function(lspconfig)
     on_attach = on_attach,
     flags = lsp_flags,
   })
+
+  lspconfig["angularls"].setup({
+    on_attach = on_attach,
+    flags = lsp_flags,
+  })
 end)

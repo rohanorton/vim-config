@@ -16,6 +16,8 @@ SAFE_REQUIRE({ "mason-tool-installer" }, function(installer)
       -- Typescript
       "typescript-language-server",
       "prettierd",
+      -- Angular
+      "angular-language-server",
       -- Elm
       "elm-language-server",
       "elm-format",
