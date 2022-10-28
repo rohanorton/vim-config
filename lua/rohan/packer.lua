@@ -196,6 +196,9 @@ SAFE_REQUIRE({ "packer", "packer.luarocks" }, function(packer, luarocks)
       -- Colors
       use("norcalli/nvim-colorizer.lua")
 
+      -- Editor Config
+      use("gpanders/editorconfig.nvim")
+
       -- My Plugins...
       use_local_or_fallback("~/Code/buffting.nvim", "rohanorton/buffting.nvim")
       use_local_or_fallback("~/Code/lua-gf.nvim", "rohanorton/lua-gf.nvim")
