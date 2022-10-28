@@ -190,6 +190,9 @@ SAFE_REQUIRE({ "packer", "packer.luarocks" }, function(packer, luarocks)
       -- Terminal
       use("akinsho/toggleterm.nvim")
 
+      -- Hex
+      use("fidian/hexmode")
+
       -- Colors
       use("norcalli/nvim-colorizer.lua")
 
