@@ -6,10 +6,10 @@ SAFE_REQUIRE({ "lspconfig" }, function(lspconfig)
 
   local on_attach = require("rohan.lsp.on-attach")
 
-  lspconfig["sumneko_lua"].setup({
+  lspconfig["lua_ls"].setup({
     on_attach = on_attach,
     flags = lsp_flags,
-    settings = require("rohan.lsp.settings.sumneko_lua"),
+    settings = require("rohan.lsp.settings.lua_ls"),
   })
 
   lspconfig["taplo"].setup({

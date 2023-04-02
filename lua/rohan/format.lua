@@ -5,7 +5,7 @@ vim.g.rohan__formatters_enabled = true
 -- Prevent certain clients from formatting
 vim.g.rohan__excluded_formatters = {
   "tsserver",
-  "sumneko_lua",
+  "lua_ls",
 }
 
 local function format()
