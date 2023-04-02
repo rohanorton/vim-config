@@ -10,8 +10,8 @@
 -- '!' = insert + command
 -- 'v' = visual + block
 SAFE_REQUIRE(
-  { "which-key", "refactoring", "telescope.builtin", "toggleterm.terminal", "pl.tablex" },
-  function(wk, refactoring, telescope_builtin, tt, tablex)
+  { "which-key", "refactoring", "telescope.builtin", "toggleterm.terminal", "pl.tablex", "mytime" },
+  function(wk, refactoring, telescope_builtin, tt, tablex, mytime)
     -- <Space> as Leader Key
     vim.keymap.set("", "<Space>", "<NOP>")
     vim.g.mapleader = " "
@@ -284,6 +284,17 @@ SAFE_REQUIRE(
     wk.register({
       g = { lazygit_toggle, "Lazy git" },
     }, {
+      prefix = "<leader>",
+    })
+
+    wk.register({
+      l = {
+        l = { mytime.add_log, "MyTime add log" },
+        r = { mytime.read_log, "MyTime read log" },
+        e = { mytime.edit_log, "MyTime edit log" },
+      },
+    }, {
+      mode = "n",
       prefix = "<leader>",
     })
   end
