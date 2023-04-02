@@ -187,6 +187,9 @@ SAFE_REQUIRE({ "packer", "packer.luarocks" }, function(packer, luarocks)
       -- Nvim Plugin Developement
       use("folke/lua-dev.nvim")
 
+      -- Trouble
+      use("folke/trouble.nvim")
+
       -- Terminal
       use("akinsho/toggleterm.nvim")
 
