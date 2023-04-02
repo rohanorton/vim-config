@@ -1,6 +1,6 @@
 vim.opt_local.formatoptions = ""
   .. "t" -- Auto-wrap
-  .. "a" -- Auto-format paragraphs
+  -- .. "a" -- Auto-format paragraphs 
   .. "c" -- Auto-wrap comments
   .. "q" -- Allow comment formatting with gq
   .. "l" -- Break long lines in insert mode
