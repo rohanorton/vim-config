@@ -39,15 +39,15 @@ SAFE_REQUIRE(
       }, { mode = "n", prefix = "<leader>" })
     end)
 
-    wk.register({
-      gq = { "<cmd>q<cr>", "Quit" },
-      gqq = { "<cmd>q!<cr>", "No, really, quit!" },
-      gqa = { "<cmd>qall<cr>", "Quit all" },
-      gwa = { "<cmd>wall<cr>", "Write all" },
-      gwq = { "<cmd>wq<cr>", "Write quit" },
-    }, {
-      mode = "n",
-    })
+    -- wk.register({
+    --   gq = { "<cmd>q<cr>", "Quit" },
+    --   gqq = { "<cmd>q!<cr>", "No, really, quit!" },
+    --   gqa = { "<cmd>qall<cr>", "Quit all" },
+    --   gwa = { "<cmd>wall<cr>", "Write all" },
+    --   gwq = { "<cmd>wq<cr>", "Write quit" },
+    -- }, {
+    --   mode = "n",
+    -- })
 
     -- Replace <C-a> and <C-x> ... The former conflicts with tmux and I never rememeber the latter
     wk.register({
