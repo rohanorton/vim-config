@@ -104,7 +104,11 @@ SAFE_REQUIRE({ "packer", "packer.luarocks" }, function(packer, luarocks)
       use("elihunter173/dirbuf.nvim")
 
       -- Autopairs
-      use({ "windwp/nvim-autopairs", "RRethy/nvim-treesitter-endwise" })
+      use({
+        "windwp/nvim-autopairs",
+        "RRethy/nvim-treesitter-endwise",
+        "windwp/nvim-ts-autotag",
+      })
 
       -- TPope plugins
       use({
