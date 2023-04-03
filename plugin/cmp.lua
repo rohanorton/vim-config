@@ -45,15 +45,16 @@ SAFE_REQUIRE(
       },
     })
 
+    -- FIXME: Stopped working entirely D:
     -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
-    cmp.setup.cmdline(":", {
-      mapping = cmp.mapping.preset.cmdline(),
-      sources = cmp.config.sources({
-        { name = "path" },
-      }, {
-        { name = "cmdline" },
-      }),
-    })
+    -- cmp.setup.cmdline(":", {
+    --   mapping = cmp.mapping.preset.cmdline(),
+    --   sources = cmp.config.sources({
+    --     { name = "path" },
+    --   }, {
+    --     { name = "cmdline" },
+    --   }),
+    -- })
 
     local autocmd = vim.api.nvim_create_autocmd
     local augroup = vim.api.nvim_create_augroup
