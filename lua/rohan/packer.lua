@@ -212,7 +212,6 @@ SAFE_REQUIRE({ "packer", "packer.luarocks" }, function(packer, luarocks)
       -- My Plugins...
       use_local_or_fallback("~/Code/rohanorton/buffting.nvim", "rohanorton/buffting.nvim")
       use_local_or_fallback("~/Code/rohanorton/lua-gf.nvim", "rohanorton/lua-gf.nvim")
-      -- use_local_or_fallback("~/Code/rohanorton/no-autowrap-codeblock.nvim", "rohanorton/no-autowrap-codeblock.nvim")
       use_local_or_fallback("~/Code/rohanorton/mytime.nvim", "rohanorton/mytime.nvim")
 
       packer.use_rocks("penlight")
