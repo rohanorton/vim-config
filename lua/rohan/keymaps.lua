@@ -112,6 +112,12 @@ SAFE_REQUIRE(
 
     wk.register({
       p = { telescope_builtin.find_files, "Find File" },
+      v = {
+        function()
+          telescope_builtin.find_files({ cwd = "/Users/rohan/.config/nvim" })
+        end,
+        "Find Vim Config File",
+      },
       f = { telescope_builtin.live_grep, "Live Grep" },
       b = { telescope_builtin.buffers, "Find Buffer" },
       h = { telescope_builtin.help_tags, "Find Help" },
