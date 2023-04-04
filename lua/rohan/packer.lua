@@ -209,6 +209,10 @@ SAFE_REQUIRE({ "packer", "packer.luarocks" }, function(packer, luarocks)
       -- Prevent Vim Inception in Terminal
       use("samjwill/nvim-unception")
 
+      -- Fuzzy Finder
+      use({ "junegunn/fzf", run = ":call fzf#install()" })
+      use("junegunn/fzf.vim")
+
       -- My Plugins...
       use_local_or_fallback("~/Code/rohanorton/buffting.nvim", "rohanorton/buffting.nvim")
       use_local_or_fallback("~/Code/rohanorton/lua-gf.nvim", "rohanorton/lua-gf.nvim")

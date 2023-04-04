@@ -128,6 +128,10 @@ SAFE_REQUIRE(
       ["#"] = { telescope_builtin.grep_string, "Search workspace for string under cursor" },
     }, { prefix = "<leader>" })
 
+    wk.register({
+      a = { ":Rg ", "Rip Grep" },
+    }, { prefix = "<leader>", mode = "n" })
+
     -- LSP
     wk.register({
       g = {
