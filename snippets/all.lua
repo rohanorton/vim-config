@@ -33,6 +33,7 @@ local uuid = s(
     end)
   end)
 )
+local null_uuid = s("null_uuid", ls.text_node("00000000-0000-0000-0000-000000000000"))
 
 local snippets = {
   -- Dates
@@ -44,6 +45,7 @@ local snippets = {
 
   -- Util
   uuid,
+  null_uuid,
 }
 
 local autosnippets = {}
