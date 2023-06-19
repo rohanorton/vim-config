@@ -88,6 +88,10 @@ SAFE_REQUIRE({ "packer", "packer.luarocks" }, function(packer, luarocks)
         "hrsh7th/cmp-calc",
         "saadparwaiz1/cmp_luasnip",
       })
+      use({
+        "zbirenbaum/copilot.lua",
+        "zbirenbaum/copilot-cmp",
+      })
 
       -- Treesitter
       use({
