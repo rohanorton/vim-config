@@ -19,9 +19,15 @@ class LuaJIT(Lua):
         "2": "2.0.5",
         "2.0": "2.0.5",
         "2.1": "2.1.0-beta3",
-        "2.1.1697887905": "2.1.0-beta3", # <--- ADDED
+        "2.1.1703358377": "2.1.0-beta3", # <--- ADDED
         "^": "2.0.5",
         "latest": "2.0.5"
     }
     # ...
+```
+
+Then run command:
+
+```bash
+python hererocks.py --verbose -j 2.1.1703358377 -r latest 2.1.1703358377
 ```

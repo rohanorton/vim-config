@@ -63,7 +63,7 @@ SAFE_REQUIRE({ "packer", "packer.luarocks" }, function(packer, luarocks)
       })
 
       -- LSP Loader
-      use("j-hui/fidget.nvim")
+      use({ "j-hui/fidget.nvim", tag = "legacy" })
 
       -- Snippets
       use({
@@ -217,6 +217,25 @@ SAFE_REQUIRE({ "packer", "packer.luarocks" }, function(packer, luarocks)
       use({ "junegunn/fzf", run = ":call fzf#install()" })
       use("junegunn/fzf.vim")
 
+      use("mtdl9/vim-log-highlighting")
+
+      -- Typescript type checking
+      use("marilari88/twoslash-queries.nvim")
+
+      -- Vim in the browser@
+      use({
+        "glacambre/firenvim",
+        run = function()
+          vim.fn["firenvim#install"](0)
+        end,
+      })
+
+      use({
+        "rest-nvim/rest.nvim",
+        rocks = { "lua-curl", "nvim-nio", "mimetypes", "xml2lua" },
+        requires = { "nvim-lua/plenary.nvim" },
+      })
+
       -- My Plugins...
       use_local_or_fallback("~/Code/rohanorton/buffting.nvim", "rohanorton/buffting.nvim")
       use_local_or_fallback("~/Code/rohanorton/lua-gf.nvim", "rohanorton/lua-gf.nvim")
@@ -234,6 +253,10 @@ SAFE_REQUIRE({ "packer", "packer.luarocks" }, function(packer, luarocks)
     config = {
       -- Prevent sloooow packer window
       max_jobs = 5,
+      luarocks = {
+        python_cmd = "python", -- Set the python command to use for running hererocks
+      },
+      log = { level = "info" }, -- The default print log level. One of: "trace", "debug", "info", "warn", "error", "fatal".
     },
   })
 end)

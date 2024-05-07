@@ -2,13 +2,17 @@ SAFE_REQUIRE({ "crates" }, function(crates)
   crates.setup({
     smart_insert = true,
     insert_closing_quote = true,
-    avoid_prerelease = true,
+    -- avoid_prerelease = true,
     autoload = true,
     autoupdate = true,
+    autoupdate_throttle = 250,
     loading_indicator = true,
     date_format = "%Y-%m-%d",
     thousands_separator = ".",
     notification_title = "Crates",
+    curl_args = { "-sL", "--retry", "1" },
+    max_parallel_requests = 80,
+    open_programs = { "xdg-open", "open" },
     disable_invalid_feature_diagnostic = false,
     text = {
       loading = "   Loading",
@@ -30,6 +34,7 @@ SAFE_REQUIRE({ "crates" }, function(crates)
     },
     popup = {
       autofocus = false,
+      hide_on_select = false,
       copy_register = '"',
       style = "minimal",
       border = "none",
@@ -72,7 +77,7 @@ SAFE_REQUIRE({ "crates" }, function(crates)
         dependency = "  %s",
         optional = " %s",
         dependency_version = "  %s",
-        loading = " ",
+        loading = "  ",
       },
       highlight = {
         title = "CratesNvimPopupTitle",
@@ -137,5 +142,6 @@ SAFE_REQUIRE({ "crates" }, function(crates)
       enabled = true,
       name = "Crates",
     },
+    on_attach = function(bufnr) end,
   })
 end)

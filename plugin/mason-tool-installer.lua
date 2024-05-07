@@ -24,6 +24,12 @@ SAFE_REQUIRE({ "mason-tool-installer" }, function(installer)
       -- Python
       "pyright",
       "black",
+      -- SQL
+      "sqlls",
+      "sqlfmt",
+      -- C#
+      "omnisharp",
+      "netcoredbg",
     },
 
     -- if set to true this will check each tool for updates. If updates

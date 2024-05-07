@@ -14,7 +14,7 @@ SAFE_REQUIRE("gruvbox", function(gruvbox)
       strings = true,
       comments = true,
       operators = false,
-      folds = true,
+      folds = false,
     },
     strikethrough = true,
     invert_selection = false,
