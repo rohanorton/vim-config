@@ -67,7 +67,7 @@ SAFE_REQUIRE({ "packer", "packer.luarocks" }, function(packer, luarocks)
 
       -- Snippets
       use({
-        "L3MON4D3/LuaSnip",
+        { "L3MON4D3/LuaSnip", run = "make install_jsregexp" },
         "rafamadriz/friendly-snippets",
       })
 
@@ -140,7 +140,7 @@ SAFE_REQUIRE({ "packer", "packer.luarocks" }, function(packer, luarocks)
       })
 
       -- Buffers
-      use({ "akinsho/bufferline.nvim", tag = "v2.*", requires = "kyazdani42/nvim-web-devicons" })
+      use({ "akinsho/bufferline.nvim", tag = "*", requires = "kyazdani42/nvim-web-devicons" })
       use({ "numtostr/BufOnly.nvim" })
 
       -- Marks
@@ -235,6 +235,8 @@ SAFE_REQUIRE({ "packer", "packer.luarocks" }, function(packer, luarocks)
         rocks = { "lua-curl", "nvim-nio", "mimetypes", "xml2lua" },
         requires = { "nvim-lua/plenary.nvim" },
       })
+
+      use({ "echasnovski/mini.nvim" })
 
       -- My Plugins...
       use_local_or_fallback("~/Code/rohanorton/buffting.nvim", "rohanorton/buffting.nvim")
