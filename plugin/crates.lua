@@ -12,8 +12,8 @@ SAFE_REQUIRE({ "crates" }, function(crates)
     notification_title = "Crates",
     curl_args = { "-sL", "--retry", "1" },
     max_parallel_requests = 80,
-    open_programs = { "xdg-open", "open" },
-    disable_invalid_feature_diagnostic = false,
+    -- open_programs = { "xdg-open", "open" },
+    -- disable_invalid_feature_diagnostic = false,
     text = {
       loading = "   Loading",
       version = "   %s",
@@ -127,17 +127,17 @@ SAFE_REQUIRE({ "crates" }, function(crates)
         jump_back = { "<c-o>", "<C-RightMouse>" },
       },
     },
-    src = {
-      insert_closing_quote = true,
-      text = {
-        prerelease = "  pre-release ",
-        yanked = "  yanked ",
-      },
-      coq = {
-        enabled = false,
-        name = "Crates",
-      },
-    },
+    -- src = {
+    --   insert_closing_quote = true,
+    --   text = {
+    --     prerelease = "  pre-release ",
+    --     yanked = "  yanked ",
+    --   },
+    --   coq = {
+    --     enabled = false,
+    --     name = "Crates",
+    --   },
+    -- },
     null_ls = {
       enabled = true,
       name = "Crates",
