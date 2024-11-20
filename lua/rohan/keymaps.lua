@@ -16,32 +16,25 @@ SAFE_REQUIRE({
   "toggleterm.terminal",
   "pl.tablex",
   "mytime",
-}, function(wk, refactoring, telescope_builtin, tt, tablex, mytime)
+  "luasnip",
+}, function(wk, refactoring, telescope_builtin, tt, tablex, mytime, luasnip)
   -- <Space> as Leader Key
   vim.keymap.set("", "<Space>", "<NOP>")
   vim.g.mapleader = " "
 
   -- Terminal Escape
   -- I really don't like this, but not sure what the best approach is :/
-  wk.register({
-    ["<esc><esc>"] = { "<c-\\><c-n>", "Normal Mode" },
-  }, { mode = "t" })
+  wk.add({
+    { "<esc><esc>", "<c-\\><c-n>", desc = "Normal Mode", mode = "t" },
+  })
 
   -- J.K. for Esc/Save
   tablex.foreachi({ "jk", "kj" }, function(keys)
-    tablex.foreachi({ "i", "c", "v", "o" }, function(mode)
-      wk.register({
-        [keys] = { "<esc>", "Escape" },
-      }, { mode = mode })
-    end)
-
-    wk.register({
-      [keys] = { "<Cmd>write<CR>", "Save File" },
-    }, { mode = "n" })
-
-    wk.register({
-      [keys] = { "<Cmd>write | source %<CR>", "Save and Source File" },
-    }, { mode = "n", prefix = "<leader>" })
+    wk.add({
+      { keys, "<esc>", desc = "Escape", mode = { "i", "c", "v", "o" } },
+      { keys, "<Cmd>write<CR>", desc = "Save File", mode = "n" },
+      { "<leader>" .. keys, "<Cmd>write | source %<CR>", desc = "Save and Source File", mode = "n" },
+    })
   end)
 
   -- wk.register({
@@ -55,196 +48,202 @@ SAFE_REQUIRE({
   -- })
 
   -- Replace <C-a> and <C-x> ... The former conflicts with tmux and I never rememeber the latter
-  wk.register({
-    ["+"] = { "<Plug>SpeedDatingUp", "Speed Dating Up" },
-    ["_"] = { "<Plug>SpeedDatingDown", "Speed Dating Down" },
-  }, {
-    mode = "x",
-  })
-  wk.register({
-    ["+"] = { "<Plug>SpeedDatingUp", "Speed Dating Up" },
-    ["_"] = { "<Plug>SpeedDatingDown", "Speed Dating Down" },
-  }, {
-    mode = "n",
-  })
-  wk.register({
-    ["+"] = { "<Plug>SpeedDatingNowUTC", "Speed Dating Now UTC" },
-    ["_"] = { "<Plug>SpeedDatingNowLocal", "Speed Dating Now Local" },
-  }, {
-    prefix = "<leader>",
+  wk.add({
+    { "+", "<Plug>SpeedDatingUp", desc = "Speed Dating Up", mode = { "x", "n" } },
+    { "_", "<Plug>SpeedDatingDown", desc = "Speed Dating Down", mode = { "x", "n" } },
+    { "<leader>+", "<Plug>SpeedDatingNowUTC", desc = "Speed Dating Now UTC" },
+    { "<leader>_", "<Plug>SpeedDatingNowLocal", desc = "Speed Dating Now Local" },
   })
 
   -- Clear Highlights
-  wk.register({
-    ["<esc><esc>"] = { "<cmd>nohlsearch<cr>", "Clear Search Highlight" },
+  wk.add({
+    { "<esc><esc>", "<cmd>nohlsearch<cr>", desc = "Clear Search Highlight" },
   })
 
   -- Paste over currently selected text without yanking it
-  wk.register({
-    p = { '"_dP', "Paste Without Yank" },
-  }, { mode = "v" })
+  wk.add({
+    { "p", '"_dP', desc = "Paste Without Yank", mode = "v" },
+  })
 
   -- Buffers
-  wk.register({
-    b = { "<Cmd>buffers<CR>", "Buffer list" },
-  }, {
-    prefix = "<leader>",
+  wk.add({
+    { "<leader>b", "<Cmd>buffers<CR>", desc = "Buffer list" },
   })
 
   -- Recenter
-  wk.register({
-    ["<c-d>"] = { "<c-d>zz", "Centre on movement" },
-    ["<c-u>"] = { "<c-u>zz", "Centre on movement" },
+  wk.add({
+    { "<c-d>", "<c-d>zz", desc = "Centre on movement" },
+    { "<c-u>", "<c-u>zz", desc = "Centre on movement" },
   })
 
   -- Go to last file
-  wk.register({
-    g = {
-      l = { "<c-^>", "Goto last file" },
-    },
+  wk.add({
+    { "gl", "<c-^>", desc = "Goto last file" },
   })
 
   -- Move Line
-  wk.register({
-    K = { ":move '<-2<CR>gv-gv", "Move Line Up" },
-    J = { ":move '>+1<CR>gv-gv", "Move Line Down" },
-  }, { mode = "v" })
+  wk.add({
+    { "K", ":move '<-2<CR>gv-gv", desc = "Move Line Up", mode = "v" },
+    { "J", ":move '>+1<CR>gv-gv", desc = "Move Line Down", mode = "v" },
+  })
 
   -- Telescope
-  wk.register({
-    ["<C-p>"] = { telescope_builtin.find_files, "Find File" },
-  }, { mode = "" })
+  wk.add({
+    { "<C-p>", telescope_builtin.find_files, desc = "Find File", mode = { "n", "c", "v" } },
+  })
 
-  wk.register({
-    p = { telescope_builtin.find_files, "Find File" },
-    v = {
+  wk.add({
+    { "<leader>p", telescope_builtin.find_files, desc = "Find File" },
+    {
+      "<leader>v",
       function()
         telescope_builtin.find_files({ cwd = "/Users/rohan/.config/nvim" })
       end,
-      "Find Vim Config File",
+      desc = "Find Vim Config File",
     },
-    f = { telescope_builtin.live_grep, "Live Grep" },
-    b = { telescope_builtin.buffers, "Find Buffer" },
-    h = { telescope_builtin.help_tags, "Find Help" },
-    m = { telescope_builtin.marks, "Search Marks" },
-    o = { telescope_builtin.oldfiles, "Old Files" },
+    { "<leader>f", telescope_builtin.live_grep, desc = "Live Grep" },
+    { "<leader>b", telescope_builtin.buffers, desc = "Find Buffer" },
+    { "<leader>h", telescope_builtin.help_tags, desc = "Find Help" },
+    { "<leader>m", telescope_builtin.marks, desc = "Search Marks" },
+    { "<leader>o", telescope_builtin.oldfiles, desc = "Old Files" },
 
-    ["/"] = { telescope_builtin.search_history, "Search History" },
-    ["#"] = { telescope_builtin.grep_string, "Search workspace for string under cursor" },
-  }, { prefix = "<leader>" })
-
-  wk.register({
-    a = { ":Rg ", "Rip Grep" },
-  }, { prefix = "<leader>", mode = "n" })
-
-  -- LSP
-  wk.register({
-    g = {
-      d = { vim.lsp.buf.definition, "Definition" },
-      D = { vim.lsp.buf.declaration, "Declaration" },
-      i = { vim.lsp.buf.implemenation, "Implemenation" },
-      w = { vim.lsp.buf.document_symbol, "Document Symbol" },
-      W = { vim.lsp.buf.workspace_symbol, "Workspace Symbol" },
-      r = { vim.lsp.buf.references, "References" },
-      t = { vim.lsp.buf.type_definition, "Type Definition" },
-      K = { vim.lsp.buf.hover, "Documentation" },
-    },
-  }, {})
-
-  wk.register({
-    ["<c-k>"] = { vim.lsp.buf.signature_help, "Signature Help" },
+    { "<leader>/", telescope_builtin.search_history, desc = "Search History" },
+    { "<leader>#", telescope_builtin.grep_string, desc = "Search workspace for string under cursor" },
   })
 
-  wk.register({
-    e = { vim.diagnostic.open_float, "Open Floating Diagnostic Window" },
-    d = { vim.diagnostic.setloclist, "Set Loc List" },
-    af = { vim.lsp.buf.code_action, "Code Action" },
-  }, { prefix = "<leader>" })
+  wk.add({
+    { "<leader>a", ":Rg ", desc = "Rip Grep", mode = "n" },
+  })
 
-  wk.register({
-    cd = { vim.lsp.buf.rename, "Rename" },
-    ["[d"] = { vim.diagnostic.goto_prev, "Goto Previous Diagnostic" },
-    ["]d"] = { vim.diagnostic.goto_next, "Goto Next Diagnostic" },
+  -- LSP
+  wk.add({
+    { "gd", vim.lsp.buf.definition, desc = "Definition" },
+    { "gD", vim.lsp.buf.declaration, desc = "Declaration" },
+    { "gi", vim.lsp.buf.implemenation, desc = "Implemenation" },
+    { "gw", vim.lsp.buf.document_symbol, desc = "Document Symbol" },
+    { "gW", vim.lsp.buf.workspace_symbol, desc = "Workspace Symbol" },
+    { "gr", vim.lsp.buf.references, desc = "References" },
+    { "gt", vim.lsp.buf.type_definition, desc = "Type Definition" },
+    { "gK", vim.lsp.buf.hover, desc = "Documentation" },
+  })
+
+  wk.add({
+    { "<c-k>", vim.lsp.buf.signature_help, desc = "Signature Help" },
+  })
+
+  wk.add({
+    { "<leader>e", vim.diagnostic.open_float, desc = "Open Floating Diagnostic Window" },
+    { "<leader>d", vim.diagnostic.setloclist, desc = "Set Loc List" },
+    { "<leader>af", vim.lsp.buf.code_action, desc = "Code Action" },
+  })
+
+  wk.add({
+    { "cd", vim.lsp.buf.rename, desc = "Rename" },
+    { "[d", vim.diagnostic.goto_prev, desc = "Goto Previous Diagnostic" },
+    { "]d", vim.diagnostic.goto_next, desc = "Goto Next Diagnostic" },
   })
 
   -- Bufferline
-  wk.register({
-    ["<leader>"] = { "<Plug>buffting-open-menu", "Open buffting menu" },
-    ["0"] = { "<Plug>buffting-jump-to-10", "Jump to buffer 10" },
-    ["1"] = { "<Plug>buffting-jump-to-1", "Jump to buffer 1" },
-    ["2"] = { "<Plug>buffting-jump-to-2", "Jump to buffer 2" },
-    ["3"] = { "<Plug>buffting-jump-to-3", "Jump to buffer 3" },
-    ["4"] = { "<Plug>buffting-jump-to-4", "Jump to buffer 4" },
-    ["5"] = { "<Plug>buffting-jump-to-5", "Jump to buffer 5" },
-    ["6"] = { "<Plug>buffting-jump-to-6", "Jump to buffer 6" },
-    ["7"] = { "<Plug>buffting-jump-to-7", "Jump to buffer 7" },
-    ["8"] = { "<Plug>buffting-jump-to-8", "Jump to buffer 8" },
-    ["9"] = { "<Plug>buffting-jump-to-9", "Jump to buffer 9" },
-  }, {
-    prefix = "<leader>",
+  wk.add({
+    { "<leader><leader>", "<Plug>buffting-open-menu", desc = "Open buffting menu" },
+    { "<leader>0", "<Plug>buffting-jump-to-10", desc = "Jump to buffer 10" },
+    { "<leader>1", "<Plug>buffting-jump-to-1", desc = "Jump to buffer 1" },
+    { "<leader>2", "<Plug>buffting-jump-to-2", desc = "Jump to buffer 2" },
+    { "<leader>3", "<Plug>buffting-jump-to-3", desc = "Jump to buffer 3" },
+    { "<leader>4", "<Plug>buffting-jump-to-4", desc = "Jump to buffer 4" },
+    { "<leader>5", "<Plug>buffting-jump-to-5", desc = "Jump to buffer 5" },
+    { "<leader>6", "<Plug>buffting-jump-to-6", desc = "Jump to buffer 6" },
+    { "<leader>7", "<Plug>buffting-jump-to-7", desc = "Jump to buffer 7" },
+    { "<leader>8", "<Plug>buffting-jump-to-8", desc = "Jump to buffer 8" },
+    { "<leader>9", "<Plug>buffting-jump-to-9", desc = "Jump to buffer 9" },
   })
 
   -- Close buffers
-  wk.register({
-    x = { "<Cmd>BuffOnly<CR>", "Close Other Buffers" },
-    q = { "<Cmd>bdelete<CR>", "Close Buffer" },
-  }, {
-    prefix = "<leader>",
+  wk.add({
+    { "<leader>x", "<Cmd>BuffOnly<CR>", desc = "Close Other Buffers" },
+    { "<leader>q", "<Cmd>bdelete<CR>", desc = "Close Buffer" },
   })
 
   -- Zoom Windows
-  wk.register({
-    z = { "<Cmd>ZoomWinTabToggle<CR>", "Zoom Window Toggle" },
-  }, {
-    mode = "",
-    prefix = "<leader>",
+  wk.add({
+    { "<leader>z", "<Cmd>ZoomWinTabToggle<CR>", desc = "Zoom Window Toggle", mode = { "n", "c", "v" } },
   })
 
-  wk.register({
-    ["<S-Tab>"] = {
-      "<C-d>",
-      "De-Tab",
-    },
-  }, { mode = "i" })
+  wk.add({
+    { "<S-Tab>", "<C-d>", desc = "De-Tab", mode = "i" },
+  })
 
   -- Luasnips
   -- press <Tab> to expand or jump in a snippet. These can also be mapped separately
   -- via <Plug>luasnip-expand-snippet and <Plug>luasnip-jump-next.
-  wk.register({
-    ["<Tab>"] = {
-      "luasnip#expand_or_jumpable() ? '<Plug>luasnip-expand-or-jump' : '<Tab>'",
-      "Luasnip expand or jump",
-      expr = true,
+  wk.add({
+    {
+      mode = "i",
+      {
+        "<Tab>",
+        function()
+          if luasnip.expand_or_jumpable() then
+            return "<Plug>luasnip-expand-or-jump"
+          else
+            return "<tab>"
+          end
+        end,
+        desc = "Luasnip expand or jump",
+        silent = true,
+        expr = true,
+      },
+      {
+        "<S-Tab>",
+        function()
+          if luasnip.jumpable(-1) then
+            return "<Plug>luasnip-jump-prev"
+          else
+            return "<C-D>"
+          end
+        end,
+        desc = "Luasnip Jump Previous",
+        expr = true,
+      },
+      { "<c-l>", "<Plug>luasnip-jump-next", desc = "Luasnip Jump Next" },
+      { "<c-j>", "<Plug>luasnip-jump-prev", desc = "Luasnip Jump Previous" },
+      {
+        "<c-e>",
+        "luasnip#choice_active() ? '<Plug>luasnip-next-choice' : '<C-E>'",
+        desc = "Luasnip Next Choice",
+        expr = true,
+      },
     },
-    ["<S-Tab>"] = {
-      "luasnip#jumpable(-1) ? '<Plug>luasnip-jump-prev' : '<C-D>'",
-      "Luasnip Jump Previous",
-      expr = true,
+    {
+      mode = "s",
+      { "<c-l>", "<Plug>luasnip-jump-next", desc = "Luasnip Jump Next" },
+      { "<c-j>", "<Plug>luasnip-jump-prev", desc = "Luasnip Jump Previous" },
+      {
+        "<S-Tab>",
+        function()
+          if luasnip.jumpable(-1) then
+            return "<Plug>luasnip-jump-prev"
+          else
+            return "<C-D>"
+          end
+        end,
+        desc = "Luasnip Jump Previous",
+        expr = true,
+      },
+      -- For changing choices in choiceNodes (not strictly necessary for a basic setup).
+      {
+        "<c-e>",
+        function()
+          if luasnip.choice_active() then
+            return "<Plug>luasnip-next-choice"
+          else
+            return "<C-E>"
+          end
+        end,
+        desc = "Luasnip Next Choice",
+        expr = true,
+      },
     },
-    ["<c-l>"] = { "<Plug>luasnip-jump-next", "Luasnip Jump Next" },
-    ["<c-j>"] = { "<Plug>luasnip-jump-prev", "Luasnip Jump Previous" },
-    ["<c-e>"] = {
-      "luasnip#choice_active() ? '<Plug>luasnip-next-choice' : '<C-E>'",
-      "Luasnip Next Choice",
-      expr = true,
-    },
-  }, { mode = "i" })
-
-  wk.register({
-    ["<c-l>"] = { "<Plug>luasnip-jump-next", "Luasnip Jump Next" },
-    ["<c-j>"] = { "<Plug>luasnip-jump-prev", "Luasnip Jump Previous" },
-    ["<S-Tab>"] = {
-      "luasnip#jumpable(-1) ? '<Plug>luasnip-jump-prev' : '<C-D>'",
-      "Luasnip Jump Previous",
-      expr = true,
-    },
-    -- For changing choices in choiceNodes (not strictly necessary for a basic setup).
-    ["<c-e>"] = {
-      "luasnip#choice_active() ? '<Plug>luasnip-next-choice' : '<C-E>'",
-      "Luasnip Next Choice",
-      expr = true,
-    },
-  }, { mode = "s" })
+  })
 
   -- stylua: ignore start
   local extract_function = function() refactoring.refactor("Extract Function") end
@@ -260,34 +259,34 @@ SAFE_REQUIRE({
   -- stylua: ignore end
 
   -- Remaps for the refactoring operations currently offered by the plugin
-  wk.register({
-    r = {
-      e = { extract_function, "Extract Function" },
-      f = { extract_function_to_file, "Extract Function To File" },
-      v = { extract_variable, "Extract Variable" },
-      i = { inline_variable, "Inline Variable" },
-      r = { select_refactoring, "Select Refactoring" },
-      dv = { debug_print_var_visual, "Debug Print Variable" },
+  wk.add({
+    {
+      mode = "v",
+      {
+        { "<leader>re", extract_function, desc = "Extract Function" },
+        { "<leader>rf", extract_function_to_file, desc = "Extract Function To File" },
+        { "<leader>rv", extract_variable, desc = "Extract Variable" },
+        { "<leader>ri", inline_variable, desc = "Inline Variable" },
+        { "<leader>rr", select_refactoring, desc = "Select Refactoring" },
+        { "<leader>rdv", debug_print_var_visual, desc = "Debug Print Variable" },
+      },
     },
-  }, {
-    mode = "v",
-    prefix = "<leader>",
   })
 
-  wk.register({
-    r = {
-      -- Extract block doesn't need visual mode
-      b = { extract_block, "Extract Block" },
-      bf = { extract_block_to_file, "Extract Block To File" },
-      -- Inline variable can also pick up the identifier currently under the cursor without visual mode
-      i = { inline_variable, "Inline Variable" },
-      n = { "Rename Variable" },
-      dv = { debug_print_var_normal, "Debug Print Variable" },
-      dc = { debug_cleanup, "Debug Print Cleanup" },
+  wk.add({
+    {
+      mode = "n",
+      {
+        -- Extract block doesn't need visual mode
+        { "<leader>rb", extract_block, desc = "Extract Block" },
+        { "<leader>rbf", extract_block_to_file, desc = "Extract Block To File" },
+        -- Inline variable can also pick up the= { identifier currently under the cursor without visual mode
+        { "<leader>ri", inline_variable, desc = "Inline Variable" },
+        -- {"<leader>rn", ,desc= "Rename Variable" },
+        { "<leader>rdv", debug_print_var_normal, desc = "Debug Print Variable" },
+        { "<leader>rdc", debug_cleanup, desc = "Debug Print Cleanup" },
+      },
     },
-  }, {
-    mode = "n",
-    prefix = "<leader>",
   })
 
   local lazygit = tt.Terminal:new({ cmd = "lazygit", direction = "float", hidden = true })
@@ -296,20 +295,18 @@ SAFE_REQUIRE({
     lazygit:toggle()
   end
 
-  wk.register({
-    g = { lazygit_toggle, "Lazy git" },
-  }, {
-    prefix = "<leader>",
+  wk.add({
+    { "<leader>g", lazygit_toggle, desc = "Lazy git" },
   })
 
-  wk.register({
-    l = {
-      l = { mytime.add_log, "MyTime add log" },
-      r = { mytime.read_log, "MyTime read log" },
-      e = { mytime.edit_log, "MyTime edit log" },
+  wk.add({
+    {
+      mode = "n",
+      {
+        { "<leader>ll", mytime.add_log, desc = "MyTime add log" },
+        { "<leader>lr", mytime.read_log, desc = "MyTime read log" },
+        { "<leader>le", mytime.edit_log, desc = "MyTime edit log" },
+      },
     },
-  }, {
-    mode = "n",
-    prefix = "<leader>",
   })
 end)
